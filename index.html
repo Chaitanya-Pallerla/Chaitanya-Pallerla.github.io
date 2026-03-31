@@ -33,7 +33,8 @@
     .bg-orb-2 { width:400px;height:400px;bottom:10%;left:-150px;background:radial-gradient(circle,rgba(255,179,71,0.08),transparent 70%); }
     /* NAV */
     .top-nav { position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(13,13,15,0.75);backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border);transition:background 0.3s; }
-    .nav-logo { font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--text);letter-spacing:-0.01em; }
+    .nav-logo { font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--text);letter-spacing:-0.01em;cursor:pointer;user-select:none;transition:color 0.2s; }
+    .nav-logo:hover { color:var(--accent); }
     .nav-logo span { color:var(--accent); }
     .nav-links { display:flex;gap:0.25rem;align-items:center; }
     .nav-btn { display:flex;flex-direction:column;align-items:center;gap:0.2rem;padding:0.45rem 0.7rem;background:transparent;border:none;cursor:pointer;color:var(--text-muted);font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.07em;text-transform:uppercase;border-radius:10px;transition:all 0.25s;text-decoration:none; }
@@ -133,65 +134,23 @@
     .award-item:hover { background:var(--surface-hover);border-color:var(--border-bright); }
     .award-year { font-size:0.62rem;color:var(--accent);font-weight:700;white-space:nowrap;margin-top:0.1rem;letter-spacing:0.06em; }
     .award-text { font-size:0.73rem;color:var(--text-muted);line-height:1.55; }
-    /* ══════════════════════════════════════
-       PROJECTS — Grid Cards + Drawer Panel
-    ══════════════════════════════════════ */
+    /* PROJECTS */
     .projects-hero { padding:clamp(2.5rem,7vw,4.5rem) 0 2.5rem; }
     .projects-filter { display:flex;gap:0.55rem;flex-wrap:wrap;margin-bottom:2rem; }
     .pf-btn { padding:0.38rem 0.95rem;border-radius:50px;border:1px solid var(--border);background:transparent;color:var(--text-muted);font-family:'Space Mono',monospace;font-size:0.66rem;cursor:pointer;letter-spacing:0.05em;transition:all 0.25s; }
     .pf-btn:hover,.pf-btn.active { border-color:var(--accent);color:var(--accent);background:rgba(255,107,43,0.08); }
-
-    /* Grid */
     .projects-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem;margin-bottom:4rem; }
-
-    /* Card */
-    .proj-card {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:18px; overflow:hidden;
-      transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-      cursor:pointer; position:relative;
-    }
-    .proj-card:hover {
-      border-color:rgba(255,107,43,0.35);
-      box-shadow:0 20px 50px rgba(0,0,0,0.3),0 0 0 1px rgba(255,107,43,0.08);
-      transform:translateY(-5px);
-    }
-    .proj-card.active-card {
-      border-color:var(--accent);
-      box-shadow:0 0 0 2px rgba(255,107,43,0.25);
-    }
-
-    /* Thumbnail */
-    .proj-thumb {
-      height:170px;
-      position:relative; overflow:hidden;
-      border-bottom:1px solid var(--border);
-      background:linear-gradient(135deg,rgba(255,107,43,0.07),rgba(255,179,71,0.05));
-    }
-    .proj-thumb img {
-      width:100%; height:100%; object-fit:cover; object-position:center;
-    }
+    .proj-card { background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;position:relative; }
+    .proj-card:hover { border-color:rgba(255,107,43,0.35);box-shadow:0 20px 50px rgba(0,0,0,0.3),0 0 0 1px rgba(255,107,43,0.08);transform:translateY(-5px); }
+    .proj-card.active-card { border-color:var(--accent);box-shadow:0 0 0 2px rgba(255,107,43,0.25); }
+    .proj-thumb { height:170px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);background:linear-gradient(135deg,rgba(255,107,43,0.07),rgba(255,179,71,0.05)); }
+    .proj-thumb img { width:100%;height:100%;object-fit:cover;object-position:center; }
     .proj-card:hover .proj-thumb img { filter:brightness(1.05); }
-    .proj-thumb-fallback {
-      width:100%; height:100%; display:flex; align-items:center;
-      justify-content:center; font-size:3.2rem;
-    }
-    .proj-thumb-badge {
-      position:absolute; top:0.7rem; right:0.7rem;
-      font-size:0.56rem; padding:0.18rem 0.55rem;
-      background:rgba(13,13,15,0.75); backdrop-filter:blur(8px);
-      color:var(--accent); border:1px solid rgba(255,107,43,0.22);
-      border-radius:20px; letter-spacing:0.1em; text-transform:uppercase; z-index:1;
-    }
-    .proj-open-hint {
-      position:absolute; bottom:0.7rem; left:50%; transform:translateX(-50%);
-      font-size:0.55rem; letter-spacing:0.12em; text-transform:uppercase;
-      color:#fff; background:var(--accent); border-radius:20px;
-      padding:0.15rem 0.6rem; opacity:0; transition:opacity 0.2s; white-space:nowrap;
-    }
+    .proj-thumb-fallback { width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3.2rem; }
+    .proj-thumb-badge { position:absolute;top:0.7rem;right:0.7rem;font-size:0.56rem;padding:0.18rem 0.55rem;background:rgba(13,13,15,0.75);backdrop-filter:blur(8px);color:var(--accent);border:1px solid rgba(255,107,43,0.22);border-radius:20px;letter-spacing:0.1em;text-transform:uppercase;z-index:1; }
+    .proj-open-hint { position:absolute;bottom:0.7rem;left:50%;transform:translateX(-50%);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:20px;padding:0.15rem 0.6rem;opacity:0;transition:opacity 0.2s;white-space:nowrap; }
     .proj-card:hover .proj-open-hint { opacity:1; }
     .proj-card.active-card .proj-open-hint { opacity:1; }
-
     .proj-body { padding:1.3rem; }
     .proj-tags { display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.7rem; }
     .proj-tag { font-size:0.56rem;padding:0.13rem 0.48rem;background:var(--surface-hover);color:var(--text-dim);border-radius:4px;letter-spacing:0.06em;text-transform:uppercase; }
@@ -201,291 +160,62 @@
     .proj-status { font-size:0.6rem;color:var(--text-dim);letter-spacing:0.06em; }
     .proj-link { font-size:0.62rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;display:flex;align-items:center;gap:0.3rem;transition:gap 0.2s;text-decoration:none; }
     .proj-card:hover .proj-link { gap:0.5rem; }
-
-    /* ── Drawer overlay ── */
-    .proj-drawer-overlay {
-      display:none;
-      position:fixed; inset:0; z-index:500;
-      background:rgba(0,0,0,0.5);
-      backdrop-filter:blur(4px);
-      animation:overlayIn 0.3s ease forwards;
-    }
+    .proj-drawer-overlay { display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);animation:overlayIn 0.3s ease forwards; }
     .proj-drawer-overlay.open { display:block; }
     @keyframes overlayIn { from{opacity:0} to{opacity:1} }
-
-    /* ── Drawer panel ── */
-    .proj-drawer {
-      position:fixed; top:0; right:0; bottom:0; z-index:501;
-      width:min(680px, 92vw);
-      background:var(--bg);
-      border-left:1px solid var(--border);
-      box-shadow:-20px 0 60px rgba(0,0,0,0.4);
-      display:flex; flex-direction:column;
-      transform:translateX(100%);
-      transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);
-      overflow:hidden;
-    }
+    .proj-drawer { position:fixed;top:0;right:0;bottom:0;z-index:501;width:min(680px,92vw);background:var(--bg);border-left:1px solid var(--border);box-shadow:-20px 0 60px rgba(0,0,0,0.4);display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);overflow:hidden; }
     .proj-drawer.open { transform:translateX(0); }
-
-    /* Drawer header */
-    .drawer-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:1rem 1.4rem;
-      border-bottom:1px solid var(--border);
-      background:var(--surface);
-      flex-shrink:0;
-    }
-    .drawer-header-title {
-      font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase;
-      color:var(--text-muted);
-    }
-    .drawer-close {
-      width:32px; height:32px; border-radius:50%;
-      background:transparent; border:1px solid var(--border);
-      color:var(--text-muted); font-size:1.1rem; cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
-      transition:all 0.2s; line-height:1;
-    }
-    .drawer-close:hover { border-color:var(--accent); color:var(--accent); }
-
-    /* Drawer scrollable body */
-    .drawer-body {
-      flex:1; overflow-y:auto; padding:1.5rem 1.6rem 3rem;
-    }
+    .drawer-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0; }
+    .drawer-header-title { font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted); }
+    .drawer-close { width:32px;height:32px;border-radius:50%;background:transparent;border:1px solid var(--border);color:var(--text-muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;line-height:1; }
+    .drawer-close:hover { border-color:var(--accent);color:var(--accent); }
+    .drawer-body { flex:1;overflow-y:auto;padding:1.5rem 1.6rem 3rem; }
     .drawer-body::-webkit-scrollbar { width:4px; }
-    .drawer-body::-webkit-scrollbar-thumb { background:var(--border-bright); border-radius:4px; }
-
-    /* Sketchfab viewer inside drawer */
-    .sketchfab-viewer-wrap {
-      position:relative;
-      width:100%; aspect-ratio:16/9;
-      border-radius:14px; overflow:hidden;
-      border:1px solid var(--border);
-      background:#111;
-      margin-bottom:1.4rem;
-    }
-    .sketchfab-viewer-wrap iframe { width:100%; height:100%; border:none; display:block; }
-    .viewer-click-overlay {
-      position:absolute; inset:0; cursor:pointer; z-index:2;
-      background:rgba(0,0,0,0.02);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .viewer-click-overlay span {
-      font-size:0.62rem; letter-spacing:0.12em; text-transform:uppercase;
-      color:rgba(255,255,255,0.5); background:rgba(0,0,0,0.5);
-      padding:0.3rem 0.8rem; border-radius:20px; backdrop-filter:blur(4px);
-      pointer-events:none;
-    }
+    .drawer-body::-webkit-scrollbar-thumb { background:var(--border-bright);border-radius:4px; }
+    .sketchfab-viewer-wrap { position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#111;margin-bottom:1.4rem; }
+    .sketchfab-viewer-wrap iframe { width:100%;height:100%;border:none;display:block; }
+    .viewer-click-overlay { position:absolute;inset:0;cursor:pointer;z-index:2;background:rgba(0,0,0,0.02);display:flex;align-items:center;justify-content:center; }
+    .viewer-click-overlay span { font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);background:rgba(0,0,0,0.5);padding:0.3rem 0.8rem;border-radius:20px;backdrop-filter:blur(4px);pointer-events:none; }
     .sketchfab-viewer-wrap.loaded .viewer-click-overlay { display:none; }
-
-    /* No-3d fallback thumb */
-    .no-viewer-thumb {
-      width:100%; aspect-ratio:16/9;
-      border-radius:14px; overflow:hidden;
-      border:1px solid var(--border);
-      margin-bottom:1.4rem;
-      display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(135deg,rgba(255,107,43,0.06),rgba(255,179,71,0.04));
-      font-size:5rem;
-    }
-
-    /* Panel content typography */
-    .proj-panel-badge {
-      display:inline-flex; align-items:center; gap:0.4rem;
-      font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase;
-      color:var(--accent); margin-bottom:0.7rem;
-    }
-    .proj-panel-badge::before {
-      content:''; width:6px; height:6px; border-radius:50%;
-      background:var(--accent); display:inline-block;
-    }
-    .proj-panel-title {
-      font-family:'DM Serif Display',serif;
-      font-size:clamp(1.3rem,3vw,1.9rem);
-      line-height:1.15; margin-bottom:0.9rem;
-    }
-    .proj-panel-desc {
-      font-size:0.76rem; color:var(--text-muted); line-height:1.85;
-      margin-bottom:1.1rem;
-    }
-    .proj-panel-chips {
-      display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:1.1rem;
-    }
-    .proj-panel-chip {
-      font-size:0.58rem; padding:0.2rem 0.6rem;
-      background:rgba(255,107,43,0.08); color:var(--accent);
-      border:1px solid rgba(255,107,43,0.2); border-radius:4px;
-      letter-spacing:0.07em; text-transform:uppercase;
-    }
-    .proj-panel-highlights {
-      display:flex; flex-direction:column; gap:0.45rem; margin-bottom:1.3rem;
-    }
-    .proj-panel-hl {
-      display:flex; align-items:flex-start; gap:0.6rem;
-      font-size:0.72rem; color:var(--text-muted); line-height:1.55;
-    }
-    .proj-panel-hl::before {
-      content:'→'; color:var(--accent); flex-shrink:0; font-size:0.65rem; margin-top:0.06rem;
-    }
-    .proj-panel-actions { display:flex; align-items:center; gap:0.9rem; flex-wrap:wrap; }
-    .proj-panel-link {
-      display:inline-flex; align-items:center; gap:0.45rem;
-      padding:0.65rem 1.3rem;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      color:#fff; border-radius:50px;
-      font-family:'Space Mono',monospace; font-size:0.66rem;
-      font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
-      text-decoration:none; transition:transform 0.2s,box-shadow 0.2s;
-    }
-    .proj-panel-link:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,107,43,0.35); }
-    .proj-panel-status {
-      font-size:0.65rem; color:var(--text-dim); letter-spacing:0.05em;
-    }
-
-    @media(max-width:768px) {
-      .projects-grid { grid-template-columns:1fr; }
-      .proj-drawer { width:100vw; top:var(--nav-h); }
-    }
-    /* ── CORNER GLOBE ── */
-    .corner-globe-wrap {
-      position:fixed;
-      top: calc(var(--nav-h) + 12px);
-      right: 16px;
-      width: 200px;
-      height: 200px;
-      pointer-events:none;
-      z-index:2;
-      transition: opacity 0.4s ease;
-      background: transparent;
-    }
-    .globe-inner {
-      position:absolute;
-      top: 10px; left: 10px;
-      width: 180px; height: 180px;
-      clip-path: circle(50% at 50% 50%);
-    }
-    #globe-three-canvas {
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      display:block;
-    }
-    .globe-inner::after {
-      content:'';
-      position:absolute; inset:0;
-      background: radial-gradient(circle at 50% 50%,
-        transparent 48%,
-        rgba(13,13,15,0.55) 65%,
-        rgba(13,13,15,0.92) 80%,
-        var(--bg) 95%
-      );
-      pointer-events:none;
-      z-index:4;
-    }
-    body.light .globe-inner::after {
-      background: radial-gradient(circle at 50% 50%,
-        transparent 48%,
-        rgba(245,242,237,0.55) 65%,
-        rgba(245,242,237,0.92) 80%,
-        var(--bg) 95%
-      );
-    }
-    #globe-sat-canvas {
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      pointer-events:none;
-      z-index:3;
-    }
-    .corner-clock {
-      position:absolute;
-      bottom: -50px;
-      left: 0; right: 0;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:0.2rem;
-      pointer-events:none;
-      z-index:5;
-    }
-    .corner-time {
-      display:flex;
-      align-items:baseline;
-      gap:0.1rem;
-      line-height:1;
-    }
-    .corner-num {
-      font-family:'Space Mono',monospace;
-      font-size:0.9rem;
-      font-weight:700;
-      color:var(--accent);
-      letter-spacing:0.05em;
-    }
-    .corner-colon {
-      font-family:'Space Mono',monospace;
-      font-size:0.85rem;
-      font-weight:700;
-      color:var(--accent);
-      opacity:0.55;
-      padding-bottom:0.1rem;
-    }
-    .corner-sub {
-      display:flex;
-      align-items:center;
-      gap:0.3rem;
-    }
-    .corner-ms {
-      font-size:0.5rem;
-      font-family:'Space Mono',monospace;
-      color:var(--text-dim);
-      letter-spacing:0.08em;
-    }
-    .corner-tz {
-      font-size:0.5rem;
-      font-family:'Space Mono',monospace;
-      color:var(--accent);
-      opacity:0.7;
-      letter-spacing:0.07em;
-    }
-    .corner-mode {
-      font-size:0.48rem;
-      font-family:'Space Mono',monospace;
-      color:var(--text-dim);
-      letter-spacing:0.1em;
-      text-transform:uppercase;
-    }
-    @media(max-width:768px) {
-      .corner-globe-wrap { display:none; }
-    }
+    .no-viewer-thumb { width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.4rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(255,107,43,0.06),rgba(255,179,71,0.04));font-size:5rem; }
+    .proj-panel-badge { display:inline-flex;align-items:center;gap:0.4rem;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem; }
+    .proj-panel-badge::before { content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block; }
+    .proj-panel-title { font-family:'DM Serif Display',serif;font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.15;margin-bottom:0.9rem; }
+    .proj-panel-desc { font-size:0.76rem;color:var(--text-muted);line-height:1.85;margin-bottom:1.1rem; }
+    .proj-panel-chips { display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.1rem; }
+    .proj-panel-chip { font-size:0.58rem;padding:0.2rem 0.6rem;background:rgba(255,107,43,0.08);color:var(--accent);border:1px solid rgba(255,107,43,0.2);border-radius:4px;letter-spacing:0.07em;text-transform:uppercase; }
+    .proj-panel-highlights { display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.3rem; }
+    .proj-panel-hl { display:flex;align-items:flex-start;gap:0.6rem;font-size:0.72rem;color:var(--text-muted);line-height:1.55; }
+    .proj-panel-hl::before { content:'→';color:var(--accent);flex-shrink:0;font-size:0.65rem;margin-top:0.06rem; }
+    .proj-panel-actions { display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap; }
+    .proj-panel-link { display:inline-flex;align-items:center;gap:0.45rem;padding:0.65rem 1.3rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-radius:50px;font-family:'Space Mono',monospace;font-size:0.66rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s; }
+    .proj-panel-link:hover { transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,43,0.35); }
+    .proj-panel-status { font-size:0.65rem;color:var(--text-dim);letter-spacing:0.05em; }
+    @media(max-width:768px) { .projects-grid{grid-template-columns:1fr;} .proj-drawer{width:100vw;top:var(--nav-h);} }
+    /* CORNER GLOBE */
+    .corner-globe-wrap { position:fixed;top:calc(var(--nav-h) + 12px);right:16px;width:200px;height:200px;pointer-events:none;z-index:2;transition:opacity 0.4s ease;background:transparent; }
+    .globe-inner { position:absolute;top:10px;left:10px;width:180px;height:180px;clip-path:circle(50% at 50% 50%); }
+    #globe-three-canvas { position:absolute;inset:0;width:100%;height:100%;display:block; }
+    .globe-inner::after { content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,transparent 48%,rgba(13,13,15,0.55) 65%,rgba(13,13,15,0.92) 80%,var(--bg) 95%);pointer-events:none;z-index:4; }
+    body.light .globe-inner::after { background:radial-gradient(circle at 50% 50%,transparent 48%,rgba(245,242,237,0.55) 65%,rgba(245,242,237,0.92) 80%,var(--bg) 95%); }
+    #globe-sat-canvas { position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3; }
+    .corner-clock { position:absolute;bottom:-50px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:0.2rem;pointer-events:none;z-index:5; }
+    .corner-time { display:flex;align-items:baseline;gap:0.1rem;line-height:1; }
+    .corner-num { font-family:'Space Mono',monospace;font-size:0.9rem;font-weight:700;color:var(--accent);letter-spacing:0.05em; }
+    .corner-colon { font-family:'Space Mono',monospace;font-size:0.85rem;font-weight:700;color:var(--accent);opacity:0.55;padding-bottom:0.1rem; }
+    .corner-sub { display:flex;align-items:center;gap:0.3rem; }
+    .corner-ms { font-size:0.5rem;font-family:'Space Mono',monospace;color:var(--text-dim);letter-spacing:0.08em; }
+    .corner-tz { font-size:0.5rem;font-family:'Space Mono',monospace;color:var(--accent);opacity:0.7;letter-spacing:0.07em; }
+    .corner-mode { font-size:0.48rem;font-family:'Space Mono',monospace;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase; }
+    @media(max-width:768px) { .corner-globe-wrap{display:none;} }
     /* SCROLLBAR */
     ::-webkit-scrollbar { width:4px; }
     ::-webkit-scrollbar-track { background:transparent; }
     ::-webkit-scrollbar-thumb { background:var(--border-bright);border-radius:4px; }
     /* RESPONSIVE */
-    @media(max-width:900px) {
-      .about-grid { grid-template-columns:1fr; }
-      .about-photo-card { position:static;max-width:280px;margin:0 auto; }
-      .about-photo-card img,.about-photo-fallback { aspect-ratio:1; }
-    }
-    @media(max-width:768px) {
-      :root { --nav-h:56px; }
-      .top-nav { height:56px;padding:0 1rem; }
-      .nav-logo { font-size:0.9rem; }
-      .nav-btn { padding:0.35rem 0.5rem;font-size:0.52rem; }
-      .nav-btn svg { width:18px!important;height:18px!important; }
-      .home-hero { grid-template-columns:1fr;text-align:center;gap:2rem;padding-top:2rem; }
-      .home-visual { order:-1; }
-      .home-bio { margin:0 auto 2rem; }
-      .home-cta { justify-content:center; }
-      .home-label { justify-content:center; }
-      .home-label::after { display:none; }
-      .profile-img-wrap { width:180px;height:180px; }
-      .home-stats { grid-template-columns:repeat(2,1fr); }
-      .projects-grid { grid-template-columns:1fr; }
-    }
-    @media(max-width:480px) {
-      .areas-grid { grid-template-columns:1fr; }
-      .skills-grid { grid-template-columns:1fr 1fr; }
-      .nav-links { gap:0; }
-    }
+    @media(max-width:900px) { .about-grid{grid-template-columns:1fr;} .about-photo-card{position:static;max-width:280px;margin:0 auto;} .about-photo-card img,.about-photo-fallback{aspect-ratio:1;} }
+    @media(max-width:768px) { :root{--nav-h:56px;} .top-nav{height:56px;padding:0 1rem;} .nav-logo{font-size:0.9rem;} .nav-btn{padding:0.35rem 0.5rem;font-size:0.52rem;} .nav-btn svg{width:18px!important;height:18px!important;} .home-hero{grid-template-columns:1fr;text-align:center;gap:2rem;padding-top:2rem;} .home-visual{order:-1;} .home-bio{margin:0 auto 2rem;} .home-cta{justify-content:center;} .home-label{justify-content:center;} .home-label::after{display:none;} .profile-img-wrap{width:180px;height:180px;} .home-stats{grid-template-columns:repeat(2,1fr);} .projects-grid{grid-template-columns:1fr;} }
+    @media(max-width:480px) { .areas-grid{grid-template-columns:1fr;} .skills-grid{grid-template-columns:1fr 1fr;} .nav-links{gap:0;} }
   </style>
 </head>
 <body>
@@ -495,7 +225,8 @@
 
 <!-- NAV -->
 <nav class="top-nav">
-  <div class="nav-logo">Chaitanya<span>.</span></div>
+  <!-- ★ CHANGED: added id="logoToggle", cursor:pointer, user-select:none, hover effect via CSS -->
+  <div class="nav-logo" id="logoToggle" title="Toggle light / dark mode">Chaitanya<span>.</span></div>
   <div class="nav-links">
     <button class="nav-btn active" id="nav-home" onclick="showPage('home')">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -734,69 +465,56 @@
 </div>
 </section>
 
-<!-- ── Drawer overlay ── -->
+<!-- Drawer overlay -->
 <div class="proj-drawer-overlay" id="drawerOverlay"></div>
 
-<!-- ── Sliding drawer panel ── -->
+<!-- Sliding drawer panel -->
 <div class="proj-drawer" id="projDrawer">
   <div class="drawer-header">
     <span class="drawer-header-title" id="drawerLabel">Project Details</span>
     <button class="drawer-close" id="drawerClose" title="Close">×</button>
   </div>
   <div class="drawer-body" id="drawerBody">
-    <!-- Viewer slots — hidden by default, shown per project -->
-    <!-- Project 1: NAS-WD / Hyperspectral regression — breast fillet 3D scan -->
     <div id="viewer-1" class="sketchfab-viewer-wrap">
       <iframe title="Breast Fillet 3D Scan" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/dfe0cac60480470a862bd4e50d1678b7"><span>Click to interact</span></div>
     </div>
-    <!-- Project 2: Thermal plastic detection — FLIR thermal camera -->
     <div id="viewer-2" class="sketchfab-viewer-wrap">
       <iframe title="FLIR Thermal Camera" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/thermal-camera-0de70ea2c53e4a9b81cda39b40e75a4a"><span>Click to interact</span></div>
     </div>
-    <!-- Project 3: MyoVision transillumination -->
     <div id="viewer-3" class="sketchfab-viewer-wrap">
       <iframe title="Transillumination Setup" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/tranillumination-setup-7bd4dff4aba54fd29113856ce43d72aa"><span>Click to interact</span></div>
     </div>
-    <!-- Project 4: SparkFun multispectral sensor -->
     <div id="viewer-4" class="sketchfab-viewer-wrap">
       <iframe title="SparkFun AS7265x Sensor" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/spark-fun-sensor-7c2ca34defe5401ebbd8237dd9e370b0"><span>Click to interact</span></div>
     </div>
-    <!-- Project 5: TACTUS tactile array — UR5 robotic arm -->
     <div id="viewer-5" class="sketchfab-viewer-wrap">
       <iframe title="UR5" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/ur5-de012f34e28541c2afcb43d8f71faa24"><span>Click to interact</span></div>
     </div>
-    <!-- Project 6: HSI + TSS correlation — blackberries 3D model -->
     <div id="viewer-6" class="sketchfab-viewer-wrap">
       <iframe title="(Free) Realistic Blackberries" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/free-realistic-blackberries-343aa2dddbbc43b6bf7cea90a595e6e5"><span>Click to interact</span></div>
     </div>
-    <!-- Project 7: HSI microorganism classification — virus 3D model -->
     <div id="viewer-7" class="sketchfab-viewer-wrap">
       <iframe title="Virus" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/virus-af9e379a2c974943881524010c36e0e6"><span>Click to interact</span></div>
     </div>
-    <!-- Project 8: Rice chalkiness HSI — rice 3D model -->
     <div id="viewer-8" class="sketchfab-viewer-wrap">
       <iframe title="Rice with Shell" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/rice-with-shell-84d49dc0a9214b17ad48eda985f80dea"><span>Click to interact</span></div>
     </div>
-    <!-- Project 9: SPIDER hexapod field robot — hexapod 3D model -->
     <div id="viewer-9" class="sketchfab-viewer-wrap">
       <iframe title="Hexapod" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/hexapod-29fef52408fc46c29c41048353610f10"><span>Click to interact</span></div>
     </div>
-    <!-- Project 10: HUSKY UGV navigation & swabbing — Husky 3D model -->
     <div id="viewer-10" class="sketchfab-viewer-wrap">
       <iframe title="Husky" allow="autoplay; fullscreen; xr-spatial-tracking" src="about:blank"></iframe>
       <div class="viewer-click-overlay" data-url="https://sketchfab.com/3d-models/husky-2140bf9857db4281ad5e3d75501ef666"><span>Click to interact</span></div>
     </div>
-
-    <!-- Text content injected per project -->
     <div id="drawerContent"></div>
   </div>
 </div>
@@ -823,10 +541,34 @@
   </div>
 </div>
 
+<!-- ★ NEW: Welcome popup — shows once per session, slides up, fades after 2s -->
+<div id="welcomePopup" style="
+  position:fixed;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  z-index:9999;
+  background:rgba(255,107,43,0.12);
+  border:1px solid rgba(255,107,43,0.35);
+  backdrop-filter:blur(16px) saturate(180%);
+  color:var(--text);
+  font-family:'Space Mono',monospace;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  padding:0.75rem 1.6rem;
+  border-radius:50px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.4s ease, transform 0.4s ease;
+">
+  👋 Welcome to my portfolio — explore my research
+</div>
+
 </div><!-- /page-wrapper -->
 
 <script>
-// Theme
+// ── Theme ──
 const toggle = document.getElementById('toggle');
 const saved = localStorage.getItem('theme');
 const preferLight = saved !== null ? saved === 'light' : (new Date().getHours() >= 6 && new Date().getHours() < 20);
@@ -837,7 +579,13 @@ toggle.addEventListener('change', () => {
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
 
-// Profile fallback
+// ★ NEW: Logo click → flip the toggle checkbox + fire its change event (animates SVG too)
+document.getElementById('logoToggle').addEventListener('click', function() {
+  toggle.checked = !toggle.checked;
+  toggle.dispatchEvent(new Event('change'));
+});
+
+// ── Profile fallback ──
 function handleImgError() {
   const wrap = document.getElementById('profileWrap');
   const img = document.getElementById('profileImg');
@@ -848,7 +596,7 @@ function handleImgError() {
   wrap.appendChild(fb);
 }
 
-// Page navigation
+// ── Page navigation ──
 function showPage(name) {
   document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -858,21 +606,18 @@ function showPage(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ════════════════════════════════════════
-// PROJECTS DATA — 5 real research projects
-// ════════════════════════════════════════
-
+// ── Projects data ──
 const SKETCHFAB_UIDS = {
-  1: 'dfe0cac60480470a862bd4e50d1678b7',   // Breast fillet 3D scan
-  2: '0de70ea2c53e4a9b81cda39b40e75a4a',   // FLIR thermal camera
-  3: '7bd4dff4aba54fd29113856ce43d72aa',   // Transillumination setup
-  4: '7c2ca34defe5401ebbd8237dd9e370b0',   // SparkFun sensor
-  5: 'de012f34e28541c2afcb43d8f71faa24',   // UR5 robotic arm
-  6: '343aa2dddbbc43b6bf7cea90a595e6e5',   // Realistic Blackberries
-  7: 'af9e379a2c974943881524010c36e0e6',   // Virus
-  8: '84d49dc0a9214b17ad48eda985f80dea',   // Rice with shell
-  9: '29fef52408fc46c29c41048353610f10',   // Hexapod
-  10: '2140bf9857db4281ad5e3d75501ef666',  // Husky UGV
+  1: 'dfe0cac60480470a862bd4e50d1678b7',
+  2: '0de70ea2c53e4a9b81cda39b40e75a4a',
+  3: '7bd4dff4aba54fd29113856ce43d72aa',
+  4: '7c2ca34defe5401ebbd8237dd9e370b0',
+  5: 'de012f34e28541c2afcb43d8f71faa24',
+  6: '343aa2dddbbc43b6bf7cea90a595e6e5',
+  7: 'af9e379a2c974943881524010c36e0e6',
+  8: '84d49dc0a9214b17ad48eda985f80dea',
+  9: '29fef52408fc46c29c41048353610f10',
+  10: '2140bf9857db4281ad5e3d75501ef666',
 };
 
 function sketchfabURL(uid) {
@@ -881,10 +626,7 @@ function sketchfabURL(uid) {
 
 const PROJECTS = [
   {
-    id: 1,
-    img: 'Project1.png',
-    icon: '📈',
-    thumbScale: 0.95,
+    id: 1, img: 'Project1.png', icon: '📈', thumbScale: 0.95,
     tags: ['imaging', 'ml', 'spectral', 'published'],
     badge: 'Published · 2024 · IF 12.4',
     title: 'NAS-WD: Neural Architecture Search for Woody Breast',
@@ -901,10 +643,7 @@ const PROJECTS = [
     link: 'https://doi.org/10.1016/j.aiia.2024.11.003'
   },
   {
-    id: 2,
-    img: 'Project2.png',
-    icon: '🌡️',
-    thumbScale: 0.95,
+    id: 2, img: 'Project2.png', icon: '🌡️', thumbScale: 0.95,
     tags: ['imaging', 'ml', 'published'],
     badge: 'Published · 2025 · IF 8.0',
     title: 'Thermal Imaging + FEA for Transparent Plastic Detection',
@@ -921,10 +660,7 @@ const PROJECTS = [
     link: 'https://doi.org/10.1016/j.foodres.2025.117993'
   },
   {
-    id: 3,
-    img: 'Project3.png',
-    icon: '📱',
-    thumbScale: 0.95,
+    id: 3, img: 'Project3.png', icon: '📱', thumbScale: 0.95,
     tags: ['imaging', 'ml', 'published'],
     badge: 'Under Review · COMPAG 2026',
     title: 'MyoVision: Smartphone Transillumination for Myopathy Grading',
@@ -941,9 +677,7 @@ const PROJECTS = [
     link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6352005'
   },
   {
-    id: 4,
-    img: 'Project4.png',
-    icon: '📡',
+    id: 4, img: 'Project4.png', icon: '📡',
     tags: ['spectral', 'ml'],
     badge: 'Manuscript in Progress · 2026',
     title: 'Low-Cost Multispectral Sensing with SparkFun AS7265x',
@@ -960,10 +694,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 5,
-    img: 'Project5.png',
-    icon: '🤚',
-    thumbScale: 0.95,
+    id: 5, img: 'Project5.png', icon: '🤚', thumbScale: 0.95,
     tags: ['robotics', 'imaging', 'ml'],
     badge: 'Ongoing · 2026–2027',
     title: 'TACTUS: Tactile Adaptive 3D Sensing Array for Woody Breast',
@@ -980,9 +711,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 6,
-    img: 'Project6.png',
-    icon: '🍬',
+    id: 6, img: 'Project6.png', icon: '🍬',
     tags: ['imaging', 'spectral', 'agriculture'],
     badge: 'Ongoing · 2026–2027',
     title: 'HSI Spectral Correlation with Total Soluble Solids (TSS)',
@@ -999,9 +728,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 7,
-    img: 'Project71.png',
-    icon: '🧫',
+    id: 7, img: 'Project71.png', icon: '🧫',
     tags: ['imaging', 'spectral', 'ml', 'agriculture'],
     badge: 'Manuscript in Progress · 2026',
     title: 'NEAT-Waveform: HSI Microorganism Classification',
@@ -1018,9 +745,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 8,
-    img: 'Project8.png',
-    icon: '🌾',
+    id: 8, img: 'Project8.png', icon: '🌾',
     tags: ['imaging', 'spectral', 'ml', 'agriculture', 'published'],
     badge: 'Major Revision Done · ASABE',
     title: 'Rice Chalkiness Classification via HSI and Stacking ML',
@@ -1037,10 +762,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 9,
-    img: 'Project9.png',
-    icon: '🕷️',
-    thumbScale: 0.95,
+    id: 9, img: 'Project9.png', icon: '🕷️', thumbScale: 0.95,
     tags: ['robotics', 'imaging', 'agriculture'],
     badge: 'Ongoing · 2025–2026',
     title: 'SPIDER: Sensing Platform for Intelligent Data-collection and Environmental Reconnaissance',
@@ -1057,9 +779,7 @@ const PROJECTS = [
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
-    id: 10,
-    img: 'Project10.png',
-    icon: '🚜',
+    id: 10, img: 'Project10.png', icon: '🚜',
     tags: ['robotics', 'imaging', 'ml'],
     badge: 'Ongoing · 2026–2027',
     title: 'Clearpath Husky UGV: Autonomous Navigation & Biosafety Mapping',
@@ -1077,7 +797,6 @@ const PROJECTS = [
   }
 ];
 
-/* Render grid */
 function renderProjects(filter) {
   const grid = document.getElementById('projectsGrid');
   const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.tags.includes(filter));
@@ -1118,7 +837,6 @@ function filterProjects(filter, btn) {
   renderProjects(filter);
 }
 
-/* Drawer logic */
 const drawer = document.getElementById('projDrawer');
 const overlay = document.getElementById('drawerOverlay');
 const drawerContent = document.getElementById('drawerContent');
@@ -1128,15 +846,10 @@ let activeDrawerId = null;
 function openDrawer(id) {
   if (activeDrawerId === id) { closeDrawer(); return; }
   activeDrawerId = id;
-
   document.querySelectorAll('.proj-card').forEach(c => c.classList.remove('active-card'));
   const activeCard = document.querySelector(`.proj-card[data-id="${id}"]`);
   if (activeCard) activeCard.classList.add('active-card');
-
-  // hide all viewers
   document.querySelectorAll('.sketchfab-viewer-wrap, .no-viewer-thumb').forEach(v => v.style.display = 'none');
-
-  // show viewer for this project
   const viewerEl = document.getElementById('viewer-' + id);
   if (viewerEl) {
     if (viewerEl.classList.contains('sketchfab-viewer-wrap')) {
@@ -1150,14 +863,10 @@ function openDrawer(id) {
       viewerEl.style.display = 'flex';
     }
   }
-
   const p = PROJECTS.find(x => x.id === id);
   drawerLabel.textContent = `Project ${String(id).padStart(2,'0')} of ${PROJECTS.length}`;
-
-  // determine link label
   const linkLabel = p.link.includes('ssrn') ? 'Read Preprint ↗' :
                     p.link.includes('scholar') ? 'Google Scholar ↗' : 'View Paper ↗';
-
   drawerContent.innerHTML = `
     <div class="proj-panel-badge">${p.badge}</div>
     <div class="proj-panel-title">${p.title}</div>
@@ -1168,7 +877,6 @@ function openDrawer(id) {
       <a class="proj-panel-link" href="${p.link}" target="_blank" rel="noopener">${linkLabel}</a>
       <span class="proj-panel-status">${p.status}</span>
     </div>`;
-
   drawer.classList.add('open');
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1200,6 +908,23 @@ renderProjects('all');
   const params = new URLSearchParams(window.location.search);
   const p = params.get('page');
   if (p && document.getElementById('page-' + p)) showPage(p);
+})();
+
+// ★ NEW: First-visit welcome popup — shows once per browser session
+(function() {
+  if (sessionStorage.getItem('visited')) return;
+  sessionStorage.setItem('visited', '1');
+  const popup = document.getElementById('welcomePopup');
+  // Slide up + fade in after 600ms (page has rendered)
+  setTimeout(() => {
+    popup.style.opacity = '1';
+    popup.style.transform = 'translateX(-50%) translateY(0)';
+  }, 600);
+  // Fade out + slide down after 2.8s (visible for ~2s)
+  setTimeout(() => {
+    popup.style.opacity = '0';
+    popup.style.transform = 'translateX(-50%) translateY(10px)';
+  }, 2800);
 })();
 </script>
 
