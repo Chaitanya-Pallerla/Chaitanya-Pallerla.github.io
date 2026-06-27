@@ -262,17 +262,137 @@
   }
   document.getElementById('searchInput').addEventListener('input',applyFilters);
 
-  const FALLBACK_PAPERS=[
-    {title:"Synthetic Data Augmentation for Enhanced Chicken Carcass Instance Segmentation",authors:"Yihong Feng, Chaitanya Pallerla, Xiaomin Lin, Akhilesh Suresh, Pouya Sohrabipour, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",venue:"IEEE Transactions on AgriFood Electronics",year:"2026",citations:2,link:"https://ieeexplore.ieee.org/document/11319168/"},
-    {title:"Thermal Imaging-Guided Detection of Transparent Plastic Contaminants on Chicken Breast: A Combined Vision and Simulation Approach",authors:"Chaitanya Pallerla, Ramesh Bahadur Bist, Casey M. Owens, Shawna Weimer, Jeyamkondan Subbiah, Dongyi Wang",venue:"Food Research International, 117993",year:"2025",citations:0,link:"https://www.sciencedirect.com/science/article/pii/S0963996925023312"},
-    {title:"Evaluation of Robotic Swabbing and Fluorescent Sensing to Monitor the Hygiene of Food Contact Surfaces",authors:"Siavash Mahmoudi, Chloe Griscom, Pouya Sohrabipour, Yang Tian, Chaitanya Pallerla, Philip Crandall, Dongyi Wang",venue:"Foods, 14(19), 3311",year:"2025",citations:1,link:"https://www.mdpi.com/2304-8158/14/19/3311"},
-    {title:"Efficient Auto-Labeling of Large-Scale Poultry Datasets (ALPD) Using Semi-Supervised Models, Active Learning, and Prompt-then-Detect Approach",authors:"Ramesh Bahadur Bist, Lilong Chai, Shawna Weimer, Hannah Atungulua, Chantel Pennicott, Xiao Yang, Sachin Subedi, Chaitanya Pallerla, Yang Tian, Dongyi Wang",venue:"arXiv preprint arXiv:2501.10809",year:"2025",citations:1,link:"https://arxiv.org/abs/2501.10809"},
-    {title:"ChicGrasp: Imitation-Learning-Based Customized Dual-Jaw Gripper Control for Manipulation of Delicate, Irregular Bio-Products",authors:"Amirreza Davar, Zhiqin Xu, Siavash Mahmoudi, Pouya Sohrabipour, Chaitanya Pallerla, Yu She, Wan Shou, Philip Crandall, Dongyi Wang",venue:"Advanced Robotics Research, e202500149",year:"2026",citations:0,link:"https://advanced.onlinelibrary.wiley.com/doi/10.1002/adrr.202500149"},
-    {title:"Palm-Size Wireless Piezoelectric Immune-Biosensing System for Rapid E. coli O157:H7 Detection",authors:"Yang Tian, Lily Kelso, Yun Xiao, Chaitanya Pallerla, Ramesh Bahadur Bist, Siavash Mahmoudi, Zhiqin Liu, Han Xiong, Dongyi Wang",venue:"Sensors International, 6, 100341",year:"2025",citations:0,link:"https://www.sciencedirect.com/science/article/pii/S2666351125000166"},
-    {title:"Automated Detection of Kinky Back in Broiler Chickens Using Optimized Deep Learning Techniques",authors:"Ramesh Bahadur Bist, Andi Asnayanti, Anh Dang Trieu Do, Yang Tian, Chaitanya Pallerla, Dongyi Wang, Adnan A. K. Alrubaye",venue:"AgriEngineering, 7(12), 415",year:"2025",citations:0,link:"https://doi.org/10.3390/agriengineering7120415"},
-    {title:"Cost-Effective Active Laser Scanning System for Depth-Aware Deep-Learning-Based Instance Segmentation in Poultry Processing",authors:"Pouya Sohrabipour, Chaitanya Kumar Reddy Pallerla, Amirreza Davar, Siavash Mahmoudi, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",venue:"AgriEngineering, 7(3), 77",year:"2025",citations:4,link:"https://doi.org/10.3390/agriengineering7030077"},
-    {title:"Neural Network Architecture Search Enabled Wide-Deep Learning (NAS-WD) for Spatially Heterogeneous Property Aware Chicken Woody Breast Classification and Hardness Regression",authors:"Chaitanya Pallerla, Yihong Feng, Casey M. Owens, Ramesh Bahadur Bist, Siavash Mahmoudi, Pouya Sohrabipour, Amirreza Davar, Dongyi Wang",venue:"Artificial Intelligence in Agriculture, 14, 73–85",year:"2024",citations:17,link:"https://doi.org/10.1016/j.aiia.2024.11.003"},
-  ];
+  const FALLBACK_PAPERS = [
+{
+title: "Assessing the Feasibility of Low-Cost Multispectral Sensing for Woody Breast Severity Classification",
+authors: "Chaitanya Pallerla, Yihong Feng, Avisekh Tripathy, Yang Tian, Pouya Sohrabipour, Amirreza Davar, Casey M. Owens, Philip G. Crandall, Jeyamkondan Subbiah, Dongyi Wang",
+venue: "Applied Food Research, 6(2), 102295",
+year: "2026",
+citations: 0,
+link: "https://doi.org/10.1016/j.afres.2026.102295"
+},
+{
+title: "Smartphone-Enabled Depth-Aware Transillumination Imaging for Detection of Chicken Breast Fillet Myopathies in Chicken Fillets",
+authors: "Chaitanya Pallerla, Ramesh Bahadur Bist, Yihong Feng, Yang Tian, Pouya Sohrabipour, Amirreza Davar, Casey M. Owens, Jeyamkondan Subbiah, Dongyi Wang",
+venue: "Under Review (SSRN)",
+year: "2026",
+citations: 0,
+link: "https://doi.org/10.2139/ssrn.6352005"
+},
+{
+title: "MyoVision: A Mobile Research Tool and NEATBoost-Attention Ensemble Framework for Real Time Chicken Breast Myopathy Detection",
+authors: "Chaitanya Pallerla, Siavash Mahmoudi, Dongyi Wang",
+venue: "CVPR MetaFood 2026 Workshop (Accepted)",
+year: "2026",
+citations: 0,
+link: "https://openaccess.thecvf.com/content/CVPR2026W/MTF/html/Pallerla_MyoVision_A_Mobile_Research_Tool_and_NEATBoost-Attention_Ensemble_Framework_for_CVPRW_2026_paper.html"
+},
+{
+title: "Context-Aware Force Estimation for Deformable Tool Manipulation in Robotic Environmental Swabbing via Few-Shot Continual Adaptation",
+authors: "Siavash Mahmoudi, Chaitanya Pallerla, Dongyi Wang",
+venue: "Under Review",
+year: "2026",
+citations: 0,
+link: ""
+},
+{
+title: "ChicGrasp: Imitation-Learning-Based Customized Dual-Jaw Gripper Control for Manipulation of Delicate, Irregular Bio-Products",
+authors: "Amirreza Davar, Zhiqin Xu, Siavash Mahmoudi, Pouya Sohrabipour, Chaitanya Pallerla, Yu She, Wan Shou, Philip G. Crandall, Dongyi Wang",
+venue: "Advanced Robotics Research",
+year: "2026",
+citations: 0,
+link: "https://doi.org/10.1002/adrr.202500149"
+},
+{
+title: "Portable Electrochemical Impedance Biosensing with DRT Enabled Machine Learning for Detecting E. coli O157:H7 in Poultry Meat",
+authors: "Yang Tian, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Ramesh Bahadur Bist, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
+venue: "Frontiers in Artificial Intelligence, 9:1741144",
+year: "2026",
+citations: 1,
+link: "https://doi.org/10.3389/frai.2026.1741144"
+},
+{
+title: "Non-Invasive Classification of Chalkiness Levels in Rough and Brown Rice via Hyperspectral Imaging and Machine Learning",
+authors: "Charles Tachie, Chaitanya Pallerla, Kanika Luthra, Griffiths G. Atungulu, Dongyi Wang",
+venue: "Under Review (Journal of ASABE)",
+year: "2026",
+citations: 0,
+link: ""
+},
+{
+title: "Neural Network Architecture Search Enabled Wide-Deep Learning (NAS-WD) for Spatially Heterogeneous Property-Aware Chicken Woody Breast Classification and Hardness Regression",
+authors: "Chaitanya Pallerla, Yihong Feng, Casey M. Owens, Ramesh Bahadur Bist, Siavash Mahmoudi, Pouya Sohrabipour, Amirreza Davar, Dongyi Wang",
+venue: "Artificial Intelligence in Agriculture, 14, 73-85",
+year: "2024",
+citations: 25,
+link: "https://doi.org/10.1016/j.aiia.2024.11.003"
+},
+{
+title: "Thermal Imaging-Guided Detection of Transparent Plastic Contaminants on Chicken Breast: A Combined Vision and Simulation Approach",
+authors: "Chaitanya Pallerla, Ramesh Bahadur Bist, Casey M. Owens, Shawna Weimer, Jeyamkondan Subbiah, Dongyi Wang",
+venue: "Food Research International, 224, 117993",
+year: "2025",
+citations: 0,
+link: "https://doi.org/10.1016/j.foodres.2025.117993"
+},
+{
+title: "Palm-Size Wireless Piezoelectric Immune-Biosensing System for Rapid E. coli O157:H7 Detection",
+authors: "Yang Tian, Lily Kelso, Yiting Xiao, Chaitanya Pallerla, Ramesh Bahadur Bist, Siavash Mahmoudi, Ziyu Liu, Han Xiong, Jeyamkondan Subbiah, Terry Howell, Dongyi Wang",
+venue: "Sensors International, 6, 100341",
+year: "2025",
+citations: 1,
+link: "https://doi.org/10.1016/j.sintl.2025.100341"
+},
+{
+title: "Cost-Effective Active Laser Scanning System for Depth-Aware Deep-Learning-Based Instance Segmentation in Poultry Processing",
+authors: "Pouya Sohrabipour, Chaitanya Kumar Reddy Pallerla, Amirreza Davar, Siavash Mahmoudi, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",
+venue: "AgriEngineering, 7(3), 77",
+year: "2025",
+citations: 4,
+link: "https://doi.org/10.3390/agriengineering7030077"
+},
+{
+title: "Evaluation of Robotic Swabbing and Fluorescent Sensing to Monitor the Hygiene of Food Contact Surfaces",
+authors: "Siavash Mahmoudi, Chloe Griscom, Pouya Sohrabipour, Yang Tian, Chaitanya Pallerla, Philip Crandall, Dongyi Wang",
+venue: "Foods, 14(19), 3311",
+year: "2025",
+citations: 1,
+link: "https://doi.org/10.3390/foods14193311"
+},
+{
+title: "Synthetic Data Augmentation for Enhanced Chicken Carcass Instance Segmentation",
+authors: "Yihong Feng, Chaitanya Pallerla, Xiaomin Lin, Akhilesh Suresh, Pouya Sohrabipour, Philip Crandall",
+venue: "IEEE Transactions on AgriFood Electronics",
+year: "2025",
+citations: 2,
+link: "https://doi.org/10.1109/TAFE.2025.3644764"
+},
+{
+title: "Automated Detection of Kinky Back in Broiler Chickens Using Optimized Deep Learning Techniques",
+authors: "Ramesh Bahadur Bist, Andi Asnayanti, Anh Dang Trieu Do, Yang Tian, Chaitanya Pallerla, Dongyi Wang, Adnan A. K. Alrubaye",
+venue: "AgriEngineering, 7(12), 415",
+year: "2025",
+citations: 0,
+link: "https://doi.org/10.3390/agriengineering7120415"
+},
+{
+title: "Portable Broadband Dielectric Impedance Immunosensor for Label-Free Escherichia coli O157 Screening in Poultry Samples",
+authors: "Yang Tian, Yinuo Huang, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
+venue: "Under Review (Microchemical Journal, SSRN)",
+year: "2026",
+citations: 0,
+link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6366921"
+},
+{
+title: "Efficient Auto-Labeling of Large-Scale Poultry Datasets (ALPD) Using Semi-Supervised Models, Active Learning, and Prompt-then-Detect Approach",
+authors: "Ramesh Bahadur Bist, Lilong Chai, Shawna Weimer, Hannah Atungulu, Chantel Pennicott, Xiao Yang, Sachin Subedi, Chaitanya Pallerla, Yang Tian, Dongyi Wang",
+venue: "Under Review (AgriEngineering)",
+year: "2026",
+citations: 1,
+link: ""
+}
+];
+
 
   async function init() {
     const txt=document.querySelector('.loading-text');
