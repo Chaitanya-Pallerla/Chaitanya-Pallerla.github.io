@@ -402,7 +402,7 @@ link: ""
     const unique=FALLBACK_PAPERS.filter(p=>{const k=p.link.trim().toLowerCase();if(seen.has(k))return false;seen.add(k);return true;});
     allPapers=unique;
     document.getElementById('statPapers').textContent=unique.length;
-    document.getElementById('statCitations').textContent='25';
+    document.getElementById('statCitations').textContent='35';
     document.getElementById('statH').textContent='2';
     document.getElementById('statI10').textContent='1';
     document.getElementById('statsBar').style.display='flex';
