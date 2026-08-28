@@ -332,7 +332,7 @@
   <div class="section-label">Updates</div>
   <h2 class="section-title">Recent <em>News</em></h2>
   <div class="news-list">
-    <div class="news-item"><div class="news-date">2026</div><div class="news-text">MyoVision paper submitted to <strong>CVPR MetaFood 2026 Workshop</strong> — NEATBoost-Attention ensemble for real-time myopathy detection</div><div class="news-badge">Under Review</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text">MyoVision paper submitted to <strong>CVPR MetaFood 2026 Workshop</strong> — NEATBoost-Attention ensemble for real-time myopathy detection</div><div class="news-badge">Published</div></div>
     <div class="news-item"><div class="news-date">2026</div><div class="news-text">ChicGrasp paper published in <strong>Advanced Robotics Research</strong> — imitation learning for delicate bio-product manipulation</div><div class="news-badge">Published</div></div>
     <div class="news-item"><div class="news-date">2026</div><div class="news-text">Synthetic data augmentation paper accepted in <strong>IEEE Transactions on AgriFood Electronics</strong> (2 citations)</div><div class="news-badge">Published</div></div>
     <div class="news-item"><div class="news-date">2025</div><div class="news-text">USDA-NIFA covered our <strong>Autonomous Pathogen Detection Rover</strong> project for poultry processing sanitation evaluation</div><div class="news-badge">Press</div></div>
@@ -660,22 +660,22 @@ const PROJECTS = [
     link: 'https://doi.org/10.1016/j.foodres.2025.117993'
   },
   {
-    id: 3, img: 'Project3.png', icon: '📱', thumbScale: 0.95,
-    tags: ['imaging', 'ml', 'published'],
-    badge: 'Under Review · COMPAG 2026',
-    title: 'MyoVision: Smartphone Transillumination for Myopathy Grading',
-    desc: 'Smartphone-enabled transillumination imaging leveraging iPhone TrueDepth and LiDAR sensors with a NEATBoost-Attention ensemble for real-time, on-device three-class severity grading of woody breast and spaghetti meat — no lab equipment required.',
-    chips: ['iOS App', 'Transillumination', 'NEAT', 'LightGBM', 'AttentionMLP', 'LiDAR'],
+    id: 3, img: 'Project3.png', icon: '🐔', thumbScale: 0.95,
+    tags: ['imaging', 'ml', '3d-fusion', 'under-review'],
+    badge: 'Under Review · AI in Agriculture',
+    title: 'Smartphone-Enabled Depth-Aware Transillumination Imaging for Woody Breast Severity Classification in Chicken Breast Fillets',
+    desc: 'A multi-modal machine learning pipeline that fuses 2D transillumination texture with 3D point-cloud geometry, captured via smartphone depth sensing, to grade woody breast severity in chicken fillets across three classes (normal, mild, severe) — going beyond binary detection to the harder, less-solved problem of severity grading.',
+    chips: ['Transillumination', '3D Point Cloud', 'Fusion-DGCNN', 'XGBoost', 'Physics-Guided ML', 'NAS/NEAT'],
     highlights: [
-      'Dual-mode depth acquisition: iPhone TrueDepth structured light + LiDAR scanner',
-      'NEATBoost-Attention ensemble with Nelder-Mead probability fusion',
-      'Classifies normal, woody breast, and spaghetti meat in real time on-device',
-      'No cloud dependency — full inference pipeline runs in CoreML on iPhone',
-      'Under Review in Computers and Electronics in Agriculture (COMPAG) · preview: SSRN'
+      'Fuses 2D transillumination texture with 3D point-cloud geometry for severity grading, not just detection',
+      'Ensemble of 9 models — 5 point-cloud architectures (incl. Fusion-DGCNN), XGBoost, LightGBM, a NEAT-optimized MLP, and a physics-guided logistic regression built on a Beer-Lambert-derived attenuation feature — selected via exhaustive combination search',
+      'Fusion-DGCNN + XGBoost + physics-guided model reaches ~90% test accuracy on 3-class severity grading, competitive with specialized deep-learning systems that require costly hyperspectral instrumentation or destructive sample prep',
+      'Point-cloud model hyperparameters tuned via evolutionary neural architecture search; MLP topology evolved via NEAT',
+      'Under review in AI in Agriculture'
     ],
-    status: 'Under Review · Computers & Electronics in Agriculture',
-    link: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6352005'
-  },
+    status: 'Under Review · AI in Agriculture'
+  }
+
   {
     id: 4, img: 'Project4.png', icon: '📡',
     tags: ['spectral', 'ml'],
