@@ -213,7 +213,7 @@
     .li-btn { background:linear-gradient(135deg,#0a66c2,#378fe9)!important; }
     .li-btn:hover { box-shadow:0 6px 20px rgba(10,102,194,.4)!important; }
     .li-dot { font-size:0.55rem;font-weight:700;color:#fff;background:#0a66c2;border-radius:3px;padding:0 0.25rem;margin-right:0.2rem;text-transform:lowercase;letter-spacing:0; }
-    .home-stats { grid-template-columns:repeat(5,1fr); margin-bottom:0.6rem; }
+    .home-stats { grid-template-columns:repeat(4,1fr); margin-bottom:0.6rem; }
     .stats-source { font-size:0.58rem;color:var(--text-dim);letter-spacing:0.08em;text-align:right;margin-bottom:2.2rem; }
     .stats-source a { color:var(--accent);text-decoration:none; }
     .live-dot { width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:livePulse 2s infinite;flex-shrink:0; }
@@ -245,7 +245,7 @@
     @keyframes fbFloat { 0%,100%{background-position:0 0} 50%{background-position:10px -8px} }
     .proj-count { font-size:0.62rem;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin:-1rem 0 1.4rem; }
     .proj-count b { color:var(--accent); }
-    @media(max-width:768px) { .home-stats{grid-template-columns:repeat(2,1fr);} .home-stat:last-child{grid-column:span 2;} .stats-source{text-align:center;} }
+    @media(max-width:768px) { .home-stats{grid-template-columns:repeat(2,1fr);} .stats-source{text-align:center;} }
     @media(prefers-reduced-motion:reduce) { .marquee-track,.live-dot,.profile-ring-wrap::after,.proj-thumb-fallback{animation:none;} }
     /* SCROLLBAR */
     ::-webkit-scrollbar { width:4px; }
@@ -350,7 +350,10 @@
   </div>
 
   <div class="home-stats">
-    <div class="home-stat"><span class="home-stat-val" data-count="14">14</span><span class="home-stat-lbl">Published Papers</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="13">13</span><span class="home-stat-lbl">Published Papers</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="6">6</span><span class="home-stat-lbl">Under Review</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="6">6</span><span class="home-stat-lbl">In Preparation</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="8">8</span><span class="home-stat-lbl">Ongoing Projects</span></div>
     <div class="home-stat"><span class="home-stat-val" data-count="53">53</span><span class="home-stat-lbl">Citations</span></div>
     <div class="home-stat"><span class="home-stat-val" data-count="4">4</span><span class="home-stat-lbl">h-index</span></div>
     <div class="home-stat"><span class="home-stat-val" data-count="2">2</span><span class="home-stat-lbl">Patent / IP Filings</span></div>
@@ -420,7 +423,7 @@
         <h2 class="about-section-title">Background</h2>
         <p class="about-para">I recently <strong>defended my PhD in Food Science</strong> at the <strong>University of Arkansas, Fayetteville</strong> (degree conferral expected Dec 2026), working under <strong>Dr. Dongyi Wang</strong> in the SAFE Lab, where I also serve as a Graduate Assistant and Teaching Assistant in Biological and Agricultural Engineering. My research sits at the intersection of intelligent sensing, multimodal imaging, machine learning, and robotics, applied to real-world food quality and safety challenges.</p>
         <p class="about-para">Before joining UARK, I completed my <strong>B.Tech. in Food Technology</strong> at Dr. NTR College of Food Science and Technology in India. That foundation in food science principles now drives my engineering and AI work.</p>
-        <p class="about-para">My PhD grew from classical ML into full multimodal systems. I integrate hyperspectral cameras, thermal sensors, depth point clouds, transillumination imaging, and tactile robotics into tools like <strong>NAS-WD</strong>, <strong>MyoVision</strong>, and <strong>TACTUS</strong> that detect chicken breast myopathies and contaminants non-invasively and in real time. Along the way I have mentored nine students, filed a patent, and co-authored 14 published papers, with 5 more under review.</p>
+        <p class="about-para">My PhD grew from classical ML into full multimodal systems. I integrate hyperspectral cameras, thermal sensors, depth point clouds, transillumination imaging, and tactile robotics into tools like <strong>NAS-WD</strong>, <strong>MyoVision</strong>, and <strong>TACTUS</strong> that detect chicken breast myopathies and contaminants non-invasively and in real time. Along the way I have mentored nine students, filed a patent, and co-authored 13 published papers, with 6 more under review, 6 manuscripts in preparation, and 8 ongoing projects.</p>
       </div>
       <div class="about-section">
         <h2 class="about-section-title">Education</h2>

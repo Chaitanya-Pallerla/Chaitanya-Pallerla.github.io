@@ -148,6 +148,10 @@
     .pub-type.t-conference{border-color:rgba(155,138,255,.5);color:#9b8aff;}
     .pub-type.t-review{border-color:rgba(255,179,71,.5);color:var(--accent2);}
     .pub-type.t-chapter{border-color:rgba(240,128,170,.5);color:#f080aa;}
+    .pub-type.t-prep{border-color:rgba(120,190,255,.5);color:#6fb6ff;}
+    .pub-type.t-ongoing{border-color:rgba(61,220,132,.5);color:#3ddc84;}
+    body.light .pub-type.t-prep{color:#2f7fd0;} body.light .pub-type.t-ongoing{color:#1f9d5c;}
+    .stat-item .stat-label{white-space:nowrap;}
     .pub-type.t-first{border-color:rgba(255,107,43,.5);color:var(--accent);background:rgba(255,107,43,.08);}
     body.light .pub-type.t-journal{color:#1a8f88;} body.light .pub-type.t-conference{color:#6a55e0;} body.light .pub-type.t-chapter{color:#c2416f;}
     .pub-actions{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;}
@@ -223,11 +227,13 @@
   <div class="hero">
     <div class="hero-label">Research Output</div>
     <h1 class="hero-title">My<br><em>Publications</em></h1>
-    <p class="hero-subtitle">Journal articles, conference papers, and manuscripts under review in intelligent food systems, multimodal imaging, robotics, and machine learning.</p>
+    <p class="hero-subtitle">Published papers, manuscripts under review and in preparation, and ongoing research in intelligent food systems, multimodal imaging, robotics, and machine learning.</p>
   </div>
   <div class="stats-bar" id="statsBar" style="display:none">
     <div class="stat-item"><span class="stat-value" id="statPapers">—</span><span class="stat-label">Published</span></div>
     <div class="stat-item"><span class="stat-value" id="statReview">—</span><span class="stat-label">Under Review</span></div>
+    <div class="stat-item"><span class="stat-value" id="statPrep">—</span><span class="stat-label">In Preparation</span></div>
+    <div class="stat-item"><span class="stat-value" id="statOngoing">—</span><span class="stat-label">Ongoing</span></div>
     <div class="stat-item"><span class="stat-value" id="statCitations">—</span><span class="stat-label">Citations</span></div>
     <div class="stat-item"><span class="stat-value" id="statH">—</span><span class="stat-label">h-index</span></div>
     <div class="stat-item"><span class="stat-value" id="statI10">—</span><span class="stat-label">i10-index</span></div>
@@ -247,6 +253,8 @@
     <button class="filter-btn" data-filter="journal">Journal</button>
     <button class="filter-btn" data-filter="conference">Conference</button>
     <button class="filter-btn" data-filter="review">Under Review</button>
+    <button class="filter-btn" data-filter="prep">In Preparation</button>
+    <button class="filter-btn" data-filter="ongoing">Ongoing</button>
     <button class="filter-btn" data-filter="chapter">Chapter</button>
     <button class="filter-btn" data-filter="first">First Author</button>
     <div class="sort-group">
@@ -285,7 +293,7 @@
   }
 
   let shownPapers = [];
-  const TYPE_LABEL = { journal: 'Journal', conference: 'Conference', review: 'Under Review', chapter: 'Book Chapter' };
+  const TYPE_LABEL = { journal: 'Journal', conference: 'Conference', review: 'Under Review', chapter: 'Book Chapter', prep: 'In Preparation', ongoing: 'Ongoing' };
   function renderCards(papers) {
     shownPapers = papers;
     const list = document.getElementById('pubList');
@@ -296,6 +304,8 @@
       const GROUPS = [
         { key: 'pub', title: 'Published <em>Papers</em>', note: 'Peer-reviewed journal articles and conference papers', test: TYPE_TEST.published },
         { key: 'rev', title: 'Under <em>Review</em>', note: 'Submitted manuscripts, not yet published', test: TYPE_TEST.review },
+        { key: 'prep', title: 'Manuscripts in <em>Preparation</em>', note: 'Completed studies being written up for submission', test: TYPE_TEST.prep },
+        { key: 'ongo', title: 'Ongoing <em>Research</em>', note: 'Active projects with manuscripts planned', test: TYPE_TEST.ongoing },
         { key: 'chap', title: 'Book <em>Chapters</em>', note: 'Invited and edited volume contributions', test: TYPE_TEST.chapter },
       ];
       const ordered = [];
@@ -399,12 +409,12 @@
   "link": "https://doi.org/10.1117/12.3095193"
  },
  {
-  "title": "Portable Broadband Dielectric Impedance Immunosensor Based on IDEs for Rapid, Label-Free Whole-Cell E. coli Detection",
+  "title": "Portable Broadband Dielectric Impedance Immunosensor for Label-Free Escherichia coli O157 Screening in Poultry Samples",
   "authors": "Yang Tian, Yinuo Huang, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
-  "venue": "Journal article · SSRN preprint link",
+  "venue": "Under Review · Microchemical Journal (SSRN preprint)",
   "year": "2026",
   "citations": 0,
-  "type": "journal",
+  "type": "review",
   "first": false,
   "link": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6366921"
  },
@@ -537,6 +547,146 @@
   "type": "chapter",
   "first": true,
   "link": "https://doi.org/10.52305/IXDB2323"
+ },
+ {
+  "title": "Highly Sensitive Detection of E. coli Using an Electrochemical Immunosensor Enhanced by Distribution of Relaxation Times Analysis",
+  "authors": "Yang Tian, Yiting Xiao, Chaitanya Pallerla, Ramesh Bahadur Bist, Siavash Mahmoudi, Ziyu Liu, Yihong Feng, Amirreza Davar, Jeyamkondan Subbiah, Terry Howell, Dongyi Wang",
+  "venue": "Manuscript in preparation",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "A Novel NEAT-Waveform Ensemble for Microorganism Classification Using Visible-NIR-SWIR Hyperspectral Imaging (400–1700 nm)",
+  "authors": "Yang Tian, Yiting Xiao, Chaitanya Pallerla*, Dongyi Wang",
+  "venue": "Manuscript in preparation",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Robot-Assisted Hygiene Monitoring in Poultry Processing Using 3D SLAM, RANSAC Segmentation, and Language-Guided Swabbing",
+  "authors": "Shiva Paudel, Siavash Mahmoudi, Chaitanya Pallerla, Dongyi Wang",
+  "venue": "Manuscript in preparation · presented orally at ASABE AIM 2026",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Computer Vision-Based Automated Caliper-Equivalent Body Condition Measurement in Group-Housed Gestating Sows",
+  "authors": "Shiva Paudel, Chaitanya Pallerla, Siavash Mahmoudi, Dongyi Wang",
+  "venue": "Manuscript in preparation · presented orally at ASABE AIM 2026",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Leveraging Blender-Synthesized Data and Depth Information for High-Precision Instance Segmentation of Chicken Carcasses",
+  "authors": "Yihong Feng, Chaitanya Pallerla, Xiaomin Lin, Pouya Sohrabipour, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",
+  "venue": "Manuscript in preparation",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "DGR-Stereo: Derivative-Guided Geometry-Aware Refinement for Real Time Stereo-Matching",
+  "authors": "Pouya Sohrabipour, Chaitanya Pallerla, Dongyi Wang",
+  "venue": "Manuscript in preparation",
+  "year": "2026",
+  "type": "prep",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Simulation-Ready 3D Chicken Carcass Asset Generation for Scalable Synthetic Data",
+  "authors": "Yihong Feng, Chaitanya Pallerla, Philip Crandall, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Design and Implementation of a Portable Multispectral Sensing Device for Real Time Agricultural Material Identification",
+  "authors": "Avisekh Tripathy, Chaitanya Pallerla*, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": false,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Hyperspectral Band Super-Resolution: Learning High-Dimensional Spectra from Low-Resolution SparkFun Spectral Data",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Yang Tian, Casey M. Owens, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Blackberry Ripeness Detection Using Hyperspectral Imaging and Machine Learning for Harvesting",
+  "authors": "Chaitanya Pallerla, Yihong Feng*, R. T. Threlfall, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Seeing the Unseen: Design of Inline Thermal Detection of Plastics in Biological Products Including Meat and Poultry",
+  "authors": "Chaitanya Pallerla, Ramesh Bahadur Bist, Yang Tian, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Ongoing research · patent filed (UADA 2026-005-01)",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "DRACO: Dynamic Reconfigurable Aerial Craft with Onboard Manipulation for Pollination and Data Collection",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Pouya Sohrabipour, Cengiz Koparan, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "SPIDER: Smart Precision Intelligent Data Extraction Rover",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Pouya Sohrabipour, Cengiz Koparan, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
+ },
+ {
+  "title": "Spectral and Analytical Grip Engine (SAGE) for Soft Material",
+  "authors": "Chaitanya Pallerla, Yang Tian, Yihong Feng, Casey M. Owens, Dongyi Wang",
+  "venue": "Ongoing research",
+  "year": "2026",
+  "type": "ongoing",
+  "first": true,
+  "citations": 0,
+  "link": ""
  }
 ];
 
@@ -552,6 +702,8 @@
     const setCount = (id, v) => { const el = document.getElementById(id); el.dataset.count = v; el.textContent = v; };
     setCount('statPapers', allPapers.filter(TYPE_TEST.published).length);
     setCount('statReview', allPapers.filter(TYPE_TEST.review).length);
+    setCount('statPrep', allPapers.filter(TYPE_TEST.prep).length);
+    setCount('statOngoing', allPapers.filter(TYPE_TEST.ongoing).length);
     setCount('statCitations', SCHOLAR.citations);
     setCount('statH', SCHOLAR.h);
     setCount('statI10', SCHOLAR.i10);
@@ -587,6 +739,8 @@
     conference: p => p.type === 'conference',
     review: p => p.type === 'review',
     chapter: p => p.type === 'chapter',
+    prep: p => p.type === 'prep',
+    ongoing: p => p.type === 'ongoing',
     first: p => p.first
   };
   let currentType = 'all';
