@@ -164,6 +164,7 @@
     .proj-drawer-overlay.open { display:block; }
     @keyframes overlayIn { from{opacity:0} to{opacity:1} }
     .proj-drawer { position:fixed;top:0;right:0;bottom:0;z-index:501;width:min(680px,92vw);background:var(--bg);border-left:1px solid var(--border);box-shadow:-20px 0 60px rgba(0,0,0,0.4);display:flex;flex-direction:column;transform:translateX(100%);transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);overflow:hidden; }
+    .proj-drawer:not(.open) { box-shadow:none; }
     .proj-drawer.open { transform:translateX(0); }
     .drawer-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.4rem;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0; }
     .drawer-header-title { font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted); }
@@ -208,6 +209,44 @@
     .corner-tz { font-size:0.5rem;font-family:'Space Mono',monospace;color:var(--accent);opacity:0.7;letter-spacing:0.07em; }
     .corner-mode { font-size:0.48rem;font-family:'Space Mono',monospace;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase; }
     @media(max-width:768px) { .corner-globe-wrap{display:none;} }
+    /* ===== NEW: dynamic additions ===== */
+    .li-btn { background:linear-gradient(135deg,#0a66c2,#378fe9)!important; }
+    .li-btn:hover { box-shadow:0 6px 20px rgba(10,102,194,.4)!important; }
+    .li-dot { font-size:0.55rem;font-weight:700;color:#fff;background:#0a66c2;border-radius:3px;padding:0 0.25rem;margin-right:0.2rem;text-transform:lowercase;letter-spacing:0; }
+    .home-stats { grid-template-columns:repeat(5,1fr); margin-bottom:0.6rem; }
+    .stats-source { font-size:0.58rem;color:var(--text-dim);letter-spacing:0.08em;text-align:right;margin-bottom:2.2rem; }
+    .stats-source a { color:var(--accent);text-decoration:none; }
+    .live-dot { width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 rgba(61,220,132,.6);animation:livePulse 2s infinite;flex-shrink:0; }
+    @keyframes livePulse { 0%{box-shadow:0 0 0 0 rgba(61,220,132,.55)} 70%{box-shadow:0 0 0 9px rgba(61,220,132,0)} 100%{box-shadow:0 0 0 0 rgba(61,220,132,0)} }
+    .home-role { min-height:1.4em; }
+    .profile-ring::before { content:'';position:absolute;top:-5px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent),0 0 30px var(--accent); }
+    .profile-ring-wrap::after { content:'';position:absolute;inset:-34px;border-radius:50%;border:1px solid rgba(255,179,71,.12);border-top-color:rgba(255,179,71,.55);animation:spin-slow 9s linear infinite reverse;pointer-events:none; }
+    .marquee { position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.95rem 0;margin-bottom:4rem;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent); }
+    .marquee-track { display:flex;gap:2.8rem;width:max-content;animation:marquee 48s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state:paused; }
+    .marquee-track span { font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--text-muted);white-space:nowrap;display:flex;align-items:center;gap:2.8rem;transition:color .2s; }
+    .marquee-track span:hover { color:var(--accent); }
+    .marquee-track span::after { content:'✦';font-size:0.6rem;color:var(--accent); }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+    .mentor-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0.7rem; }
+    .mentor-card { display:flex;gap:0.8rem;align-items:flex-start;padding:0.9rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;transition:border-color .3s,background .3s; }
+    .mentor-card:hover { border-color:rgba(255,107,43,.4);background:var(--surface-hover); }
+    .mentor-av { width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.68rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2)); }
+    .mentor-name { font-size:0.74rem;font-weight:700;margin-bottom:0.15rem; }
+    .mentor-lvl { font-size:0.52rem;padding:0.05rem 0.4rem;border:1px solid rgba(255,107,43,.3);color:var(--accent);border-radius:4px;margin-left:0.25rem;vertical-align:middle;font-weight:400; }
+    .mentor-proj { font-size:0.66rem;color:var(--text-muted);line-height:1.5; }
+    .mentor-time { font-size:0.58rem;color:var(--text-dim);margin-top:0.25rem;letter-spacing:0.05em; }
+    .pill-row { display:flex;flex-wrap:wrap;gap:0.55rem; }
+    .info-pill { font-size:0.66rem;padding:0.5rem 0.95rem;border-radius:50px;border:1px solid var(--border);background:var(--surface);color:var(--text-muted); }
+    .info-pill b { color:var(--accent); }
+    .proj-card[data-id="11"] .proj-thumb { background:#000; }
+    .proj-thumb-fallback { background:radial-gradient(circle at 30% 30%,rgba(255,107,43,.22),transparent 60%),radial-gradient(circle at 75% 70%,rgba(255,179,71,.18),transparent 55%);animation:fbFloat 6s ease-in-out infinite;filter:drop-shadow(0 6px 18px rgba(255,107,43,.35)); }
+    @keyframes fbFloat { 0%,100%{background-position:0 0} 50%{background-position:10px -8px} }
+    .proj-count { font-size:0.62rem;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin:-1rem 0 1.4rem; }
+    .proj-count b { color:var(--accent); }
+    @media(max-width:768px) { .home-stats{grid-template-columns:repeat(2,1fr);} .home-stat:last-child{grid-column:span 2;} .stats-source{text-align:center;} }
+    @media(prefers-reduced-motion:reduce) { .marquee-track,.live-dot,.profile-ring-wrap::after,.proj-thumb-fallback{animation:none;} }
     /* SCROLLBAR */
     ::-webkit-scrollbar { width:4px; }
     ::-webkit-scrollbar-track { background:transparent; }
@@ -290,12 +329,13 @@
 <div class="container">
   <div class="home-hero">
     <div>
-      <div class="home-label">PhD Researcher · SAFE Lab · UARK</div>
-      <h1 class="home-name">Chaitanya<br>Kumar Reddy<br><em>Pallerla</em></h1>
-      <div class="home-role">AI · Imaging · Food Systems</div>
-      <p class="home-bio">Building intelligent sensing and vision systems to transform food safety and quality assessment. PhD candidate at the University of Arkansas, fusing hyperspectral imaging, LiDAR, machine learning, and robotics to solve real-world agricultural challenges.</p>
+      <div class="home-label"><span class="live-dot"></span>PhD (Defended) · SAFE Lab · UARK</div>
+      <h1 class="home-name">Chaitanya<br>Kumar Reddy<br><em class="fx-shine">Pallerla</em></h1>
+      <div class="home-role">&gt; <span data-typed='["Hyperspectral Imaging","Machine Learning & AI","Robotic Palpation","Edge AI for Food Safety","Multimodal Sensor Fusion","UGVs & Aerial Robotics"]'>Hyperspectral Imaging</span></div>
+      <p class="home-bio">Building intelligent sensing and vision systems that make food safer and quality assessment smarter. I recently <strong style="color:var(--text)">defended my PhD in Food Science</strong> at the University of Arkansas (degree conferral Dec 2026), fusing hyperspectral, thermal, and depth imaging with machine learning and robotics to solve real-world food and agricultural challenges.</p>
       <div class="home-cta">
         <button class="btn-primary" onclick="showPage('projects')">View Research ↗</button>
+        <a class="btn-ghost" href="publications.html">Publications</a>
         <a class="btn-ghost" href="Contact.html">Get In Touch</a>
       </div>
     </div>
@@ -310,34 +350,48 @@
   </div>
 
   <div class="home-stats">
-    <div class="home-stat"><span class="home-stat-val">13+</span><span class="home-stat-lbl">Publications</span></div>
-    <div class="home-stat"><span class="home-stat-val">47</span><span class="home-stat-lbl">Citations</span></div>
-    <div class="home-stat"><span class="home-stat-val">$300k</span><span class="home-stat-lbl">Grant Support</span></div>
-    <div class="home-stat"><span class="home-stat-val">10+</span><span class="home-stat-lbl">Active Projects</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="13">13</span><span class="home-stat-lbl">Published Papers</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="53">53</span><span class="home-stat-lbl">Citations</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="4">4</span><span class="home-stat-lbl">h-index</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="2">2</span><span class="home-stat-lbl">Patent / IP Filings</span></div>
+    <div class="home-stat"><span class="home-stat-val" data-count="300" data-prefix="$" data-suffix="k">$300k</span><span class="home-stat-lbl">Grant Support</span></div>
+  </div>
+  <div class="stats-source">Citation metrics from <a href="https://scholar.google.com/citations?user=JYL8F98AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> · updated Oct 2026</div>
+
+  <!-- Venue marquee -->
+  <div class="marquee" aria-label="Publication venues">
+    <div class="marquee-track">
+      <span>Artificial Intelligence in Agriculture</span><span>Food Research International</span><span>CVPR MetaFood Workshop</span><span>Frontiers in Artificial Intelligence</span><span>IEEE Trans. AgriFood Electronics</span><span>Applied Food Research</span><span>Proc. SPIE</span><span>Journal of the ASABE</span><span>Foods (MDPI)</span><span>AgriEngineering</span><span>Advanced Robotics Research</span><span>Sensors International</span>
+      <span aria-hidden="true">Artificial Intelligence in Agriculture</span><span aria-hidden="true">Food Research International</span><span aria-hidden="true">CVPR MetaFood Workshop</span><span aria-hidden="true">Frontiers in Artificial Intelligence</span><span aria-hidden="true">IEEE Trans. AgriFood Electronics</span><span aria-hidden="true">Applied Food Research</span><span aria-hidden="true">Proc. SPIE</span><span aria-hidden="true">Journal of the ASABE</span><span aria-hidden="true">Foods (MDPI)</span><span aria-hidden="true">AgriEngineering</span><span aria-hidden="true">Advanced Robotics Research</span><span aria-hidden="true">Sensors International</span>
+    </div>
   </div>
 
   <div class="section-label">Research Focus</div>
   <h2 class="section-title">Core <em>Expertise</em></h2>
   <div class="areas-grid">
-    <div class="area-card"><div class="area-icon">🔬</div><div class="area-name">Multimodal Sensing</div><div class="area-desc">Hyperspectral, LiDAR, thermal, and transillumination imaging for food quality assessment</div></div>
-    <div class="area-card"><div class="area-icon">🤖</div><div class="area-name">Machine Learning & AI</div><div class="area-desc">NEAT-evolved ensembles, deep learning, NAS-WD architectures for classification and regression</div></div>
-    <div class="area-card"><div class="area-icon">🍗</div><div class="area-name">Poultry Quality</div><div class="area-desc">Woody breast and spaghetti meat myopathy detection in broiler fillets via non-invasive methods</div></div>
-    <div class="area-card"><div class="area-icon">🦾</div><div class="area-name">Robotics & Automation</div><div class="area-desc">Robotic palpation, autonomous pathogen detection, gripper control for bio-products</div></div>
-    <div class="area-card"><div class="area-icon">📱</div><div class="area-name">Mobile AI Systems</div><div class="area-desc">Smartphone-enabled imaging and iOS apps for real-time field deployment of ML models</div></div>
-    <div class="area-card"><div class="area-icon">🌾</div><div class="area-name">Precision Agriculture</div><div class="area-desc">Foreign material detection, rice quality assessment, and sustainable food processing systems</div></div>
-    <div class="area-card"><div class="area-icon">🧬</div><div class="area-name">Biosensing</div><div class="area-desc">Electrochemical biosensors with ML for rapid pathogen detection (E. coli O157:H7)</div></div>
-    <div class="area-card"><div class="area-icon">📊</div><div class="area-name">Data Science</div><div class="area-desc">Synthetic data augmentation, active learning, and statistical modeling for complex datasets</div></div>
+    <div class="area-card"><div class="area-icon">🔬</div><div class="area-name">Multimodal Sensing & Fusion</div><div class="area-desc">Hyperspectral, thermal, depth, transillumination, and low-cost multispectral sensing fused for food quality assessment</div></div>
+    <div class="area-card"><div class="area-icon">🤖</div><div class="area-name">Machine Learning & AI</div><div class="area-desc">NEAT-evolved ensembles, NAS-WD architectures, and point-cloud deep learning for food quality and safety</div></div>
+    <div class="area-card"><div class="area-icon">🦾</div><div class="area-name">Robotics & Automation</div><div class="area-desc">Robotic palpation (TACTUS), robotic swabbing, and gripper control for delicate bio-products</div></div>
+    <div class="area-card"><div class="area-icon">🚁</div><div class="area-name">UGVs & UAVs</div><div class="area-desc">Ground rovers and reconfigurable aerial craft for field data collection, pollination, and facility surveillance</div></div>
+    <div class="area-card"><div class="area-icon">🛰️</div><div class="area-name">GIS & Precision Ag</div><div class="area-desc">Geospatial data analytics, stand counting, and precision agriculture for crops like rice and blackberry</div></div>
+    <div class="area-card"><div class="area-icon">🧊</div><div class="area-name">Digital Twins & Synthetic Data</div><div class="area-desc">Blender-synthesized datasets, simulation-ready 3D assets, and FEA-guided thermal modeling</div></div>
+    <div class="area-card"><div class="area-icon">🧬</div><div class="area-name">Non-Invasive Detection</div><div class="area-desc">Woody breast myopathy, plastic contaminants, pathogens (E. coli O157:H7), and rice chalkiness</div></div>
+    <div class="area-card"><div class="area-icon">📱</div><div class="area-name">Real-Time & Edge AI</div><div class="area-desc">Smartphone apps and edge-deployed models for generalizable, real-time monitoring in the field and plant</div></div>
   </div>
 
   <div class="section-label">Updates</div>
   <h2 class="section-title">Recent <em>News</em></h2>
   <div class="news-list">
-    <div class="news-item"><div class="news-date">2026</div><div class="news-text">MyoVision paper submitted to <strong>CVPR MetaFood 2026 Workshop</strong> — NEATBoost-Attention ensemble for real-time myopathy detection</div><div class="news-badge">Published</div></div>
-    <div class="news-item"><div class="news-date">2026</div><div class="news-text">ChicGrasp paper published in <strong>Advanced Robotics Research</strong> — imitation learning for delicate bio-product manipulation</div><div class="news-badge">Published</div></div>
-    <div class="news-item"><div class="news-date">2026</div><div class="news-text">Synthetic data augmentation paper accepted in <strong>IEEE Transactions on AgriFood Electronics</strong> (2 citations)</div><div class="news-badge">Published</div></div>
-    <div class="news-item"><div class="news-date">2025</div><div class="news-text">USDA-NIFA covered our <strong>Autonomous Pathogen Detection Rover</strong> project for poultry processing sanitation evaluation</div><div class="news-badge">Press</div></div>
-    <div class="news-item"><div class="news-date">2025</div><div class="news-text">AAFP Conference Poster — <strong>3rd place award</strong> for thermal imaging foreign material detection in poultry</div><div class="news-badge">Award</div></div>
-    <div class="news-item"><div class="news-date">2025</div><div class="news-text">USDA NIFA grant <strong>($299,964)</strong> funded for Robotic Palpation Calibrated Vision System for Woody Breast Evaluation</div><div class="news-badge">Grant</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text">Successfully <strong>defended my PhD</strong> in Food Science at the University of Arkansas, with degree conferral expected Dec 2026</div><div class="news-badge">Milestone</div></div>
+    <div class="news-item"><div class="news-date">Sep 2026</div><div class="news-text">Hosted the <strong>AI in Ag hackathon</strong> at the LionHogTech event (Sept 18–20)</div><div class="news-badge">Service</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text">Patent filed (<strong>UADA 2026-005-01</strong>) for inline thermal detection of plastics in meat and poultry, plus a patent disclosure for smartphone depth-aware transillumination imaging</div><div class="news-badge">Patent</div></div>
+    <div class="news-item"><div class="news-date">Jul 2026</div><div class="news-text">ASABE AIM 2026: <strong>Corn Stand Count &amp; Replant</strong> robotics competition, plus two co-authored oral presentations on robotic hygiene monitoring and sow body condition</div><div class="news-badge">Conference</div></div>
+    <div class="news-item"><div class="news-date">Jun 2026</div><div class="news-text"><strong>MyoVision</strong> accepted at the <strong>CVPR MetaFood 2026 Workshop</strong>, a mobile tool with a NEATBoost-attention ensemble for real-time myopathy detection</div><div class="news-badge">Published</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text">Low-cost multispectral woody breast paper published in <strong>Applied Food Research</strong> (IF 5.4), supported by the UARK Libraries Open Access Publishing Fund</div><div class="news-badge">Published</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text">Rice chalkiness HSI paper published in the <strong>Journal of the ASABE</strong>; DRT biosensing paper published in <strong>Frontiers in AI</strong>; ChicGrasp in <strong>Advanced Robotics Research</strong></div><div class="news-badge">Published</div></div>
+    <div class="news-item"><div class="news-date">2026</div><div class="news-text"><strong>TACTUS</strong>, a robotic palpation system for woody breast hardness mapping, submitted to <strong>IEEE Transactions on Instrumentation and Measurement</strong></div><div class="news-badge">Review</div></div>
+    <div class="news-item"><div class="news-date">Dec 2025</div><div class="news-text">USDA-NIFA featured our <strong>Autonomous Pathogen Detection Rover</strong> for poultry processing sanitation evaluation</div><div class="news-badge">Press</div></div>
+    <div class="news-item"><div class="news-date">Sep 2025</div><div class="news-text">AAFP Conference: <strong>3rd place poster</strong> on thermal imaging for foreign material detection in poultry</div><div class="news-badge">Award</div></div>
   </div>
 </div>
 </section>
@@ -355,28 +409,29 @@
       <div class="about-photo-fallback" style="display:none">C</div>
       <div class="about-photo-info">
         <div class="about-photo-name">Chaitanya Kumar Reddy Pallerla</div>
-        <div class="about-photo-role">PhD Candidate · Food Science</div>
+        <div class="about-photo-role">PhD (Defended) · Food Science</div>
         <div class="about-photo-affil">University of Arkansas, Fayetteville</div>
+        <div class="about-photo-affil">Graduate Assistant &amp; TA · Biological and Agricultural Engineering</div>
         <div class="about-photo-affil" style="color:var(--accent);font-size:0.62rem;margin-top:0.4rem;">SAFE Lab · Dr. Dongyi Wang</div>
       </div>
     </div>
     <div>
       <div class="about-section">
         <h2 class="about-section-title">Background</h2>
-        <p class="about-para">I am a PhD candidate in Food Science at the <strong>University of Arkansas, Fayetteville</strong>, working under <strong>Dr. Dongyi Wang</strong> in the SAFE Lab. My research sits at the intersection of intelligent sensing, multimodal imaging, and machine learning — applied to real-world food quality and safety challenges.</p>
-        <p class="about-para">Before joining UARK, I completed my <strong>B.Tech. in Food Technology</strong> from Dr. NTR College of Food Science and Technology in India (GPA 8.35/10), which gave me a strong foundation in food science principles that now drives my engineering and AI work.</p>
-        <p class="about-para">My PhD journey has evolved from classical ML to building full multimodal pipelines — integrating hyperspectral cameras, LiDAR point clouds, thermal sensors, and transillumination imaging — culminating in systems like <strong>MyoVision</strong> and <strong>Fusion-PointNet</strong> that detect chicken breast myopathies with clinical-grade accuracy in real time.</p>
+        <p class="about-para">I recently <strong>defended my PhD in Food Science</strong> at the <strong>University of Arkansas, Fayetteville</strong> (degree conferral expected Dec 2026), working under <strong>Dr. Dongyi Wang</strong> in the SAFE Lab, where I also serve as a Graduate Assistant and Teaching Assistant in Biological and Agricultural Engineering. My research sits at the intersection of intelligent sensing, multimodal imaging, machine learning, and robotics, applied to real-world food quality and safety challenges.</p>
+        <p class="about-para">Before joining UARK, I completed my <strong>B.Tech. in Food Technology</strong> at Dr. NTR College of Food Science and Technology in India. That foundation in food science principles now drives my engineering and AI work.</p>
+        <p class="about-para">My PhD grew from classical ML into full multimodal systems. I integrate hyperspectral cameras, thermal sensors, depth point clouds, transillumination imaging, and tactile robotics into tools like <strong>NAS-WD</strong>, <strong>MyoVision</strong>, and <strong>TACTUS</strong> that detect chicken breast myopathies and contaminants non-invasively and in real time. Along the way I have mentored nine students, filed a patent, and co-authored 13 published papers, with 6 more under review.</p>
       </div>
       <div class="about-section">
         <h2 class="about-section-title">Education</h2>
         <div class="edu-timeline">
           <div class="edu-item">
             <div class="edu-dot"></div>
-            <div><div class="edu-degree">PhD Candidate, Food Science</div><div class="edu-school">University of Arkansas, Fayetteville, AR</div><div class="edu-period">Aug 2022 – July 2026 (Expected)</div><div class="edu-detail">Advisor: Dr. Dongyi Wang · SAFE Lab · Expected Summer 2026</div></div>
+            <div><div class="edu-degree">Ph.D., Food Science (Defended)</div><div class="edu-school">University of Arkansas, Fayetteville, AR</div><div class="edu-period">Aug 2022 – Dec 2026 (Expected) · GPA: 3.774</div><div class="edu-detail">Advisor: Dr. Dongyi Wang · SAFE Lab</div></div>
           </div>
           <div class="edu-item">
             <div class="edu-dot"></div>
-            <div><div class="edu-degree">M.S., Food Science — Earned 2024</div><div class="edu-school">University of Arkansas, Fayetteville, AR</div><div class="edu-period">Aug 2022 – 2024 · GPA: 3.739</div><div class="edu-detail">Thesis: Multimodal sensing for poultry quality assessment</div></div>
+            <div><div class="edu-degree">M.S., Food Science — Earned 2024</div><div class="edu-school">University of Arkansas, Fayetteville, AR</div><div class="edu-period">Aug 2022 – 2024 · GPA: 3.65</div><div class="edu-detail">Thesis: Multimodal sensing for poultry quality assessment</div></div>
           </div>
           <div class="edu-item">
             <div class="edu-dot" style="background:var(--border-bright)"></div>
@@ -387,18 +442,18 @@
       <div class="about-section">
         <h2 class="about-section-title">Research Interests</h2>
         <div class="skills-grid">
-          <div class="skill-chip"><div class="skill-dot"></div>Intelligent Sensing</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Hyperspectral Imaging</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Machine Learning & AI</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Intelligent Sensing & Sensor Fusion</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Multimodal Imaging</div>
+          <div class="skill-chip"><div class="skill-dot"></div>ML / DL for Food Quality & Safety</div>
           <div class="skill-chip"><div class="skill-dot"></div>Robotics & Automation</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Data-Driven Modeling</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Non-Invasive Detection</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Real-Time Monitoring</div>
+          <div class="skill-chip"><div class="skill-dot"></div>UGVs & UAVs</div>
+          <div class="skill-chip"><div class="skill-dot"></div>GIS & Precision Agriculture</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Geospatial Data Analytics</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Digital Twins</div>
           <div class="skill-chip"><div class="skill-dot"></div>Synthetic Data Generation</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Biosensing Systems</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Non-Thermal Processing</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Mobile AI Deployment</div>
-          <div class="skill-chip"><div class="skill-dot"></div>Sustainable Food Systems</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Non-Invasive Detection</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Edge AI & Real-Time Monitoring</div>
+          <div class="skill-chip"><div class="skill-dot"></div>Non-Thermal Food Processing</div>
         </div>
       </div>
       <div class="about-section">
@@ -421,21 +476,68 @@
       <div class="about-section">
         <h2 class="about-section-title">Teaching & Service</h2>
         <div class="award-list">
-          <div class="award-item"><div class="award-year">2023–25</div><div class="award-text">Teaching Assistant — Transport Phenomena in Biological Systems (BENG 3733) & Measure and Control Biological Systems (BENG 3113), UARK</div></div>
-          <div class="award-item"><div class="award-year">Nov 2024</div><div class="award-text">Guest Lecture — "Application of AI and Robotics in Food Systems" for FDSC 10101, University of Arkansas (Instructor: Dr. Jamie I. Baum)</div></div>
-          <div class="award-item"><div class="award-year">Nov 2024</div><div class="award-text">Introduction to Robotics lecture at Haas Hall Academy High School with Dr. Ramesh Bist</div></div>
-          <div class="award-item"><div class="award-year">Oct 2025</div><div class="award-text">Hosted robotics workshop at LionHogTech event</div></div>
-          <div class="award-item"><div class="award-year">Fall 2023</div><div class="award-text">USDA F2OCUS Program — mentoring graduate students from LSU for research report writing</div></div>
+          <div class="award-item"><div class="award-year">2023–26</div><div class="award-text">Teaching Assistant, Measure and Control Biological Systems (BENG 3113), UARK</div></div>
+          <div class="award-item"><div class="award-year">2023–24</div><div class="award-text">Teaching Assistant, Transport Phenomena in Biological Systems (BENG 3733), UARK</div></div>
+          <div class="award-item"><div class="award-year">Sep 2026</div><div class="award-text">Hosted the AI in Ag hackathon at the LionHogTech event (Sept 18–20)</div></div>
+          <div class="award-item"><div class="award-year">Jun 2026</div><div class="award-text">Hands-on Smart Irrigation System Using Arduino: interactive STEM workshop for prospective high-school students in the UARK recruitment and outreach program</div></div>
+          <div class="award-item"><div class="award-year">Oct 2025</div><div class="award-text">Hosted a robotics workshop at the LionHogTech event (Oct 17–18)</div></div>
+          <div class="award-item"><div class="award-year">Nov 2024</div><div class="award-text">Guest Lecture, “Application of Artificial Intelligence and Robotics in Food Systems” for FDSC 10101 (Instructor: Dr. Jamie I. Baum)</div></div>
+          <div class="award-item"><div class="award-year">Nov 2024</div><div class="award-text">Introduction to Robotics lecture at Haas Hall Academy High School, with Dr. Ramesh Bist</div></div>
+          <div class="award-item"><div class="award-year">Fall 2023</div><div class="award-text">USDA F2OCUS Program, mentoring graduate students from LSU on a research report</div></div>
+          <div class="award-item"><div class="award-year">Jun 2023</div><div class="award-text">ExCEL Leadership Program</div></div>
+          <div class="award-item"><div class="award-year">2017–21</div><div class="award-text">Volunteered for International Food Day and demonstrated food research equipment and preservation techniques to high-school students</div></div>
         </div>
       </div>
       <div class="about-section">
         <h2 class="about-section-title">Awards & Press</h2>
         <div class="award-list">
-          <div class="award-item"><div class="award-year">2025</div><div class="award-text">🏆 AAFP Conference — 3rd place, Poster Presentation (thermal imaging, foreign material detection)</div></div>
-          <div class="award-item"><div class="award-year">2024</div><div class="award-text">🏆 ASABE Annual Meeting — 4th place, Strawberry Harvester Prototype competition</div></div>
-          <div class="award-item"><div class="award-year">2023</div><div class="award-text">🏆 ASABE Annual Meeting — 4th place, Cotton Harvester Prototype competition</div></div>
-          <div class="award-item"><div class="award-year">Mar 2023</div><div class="award-text">📰 University of Arkansas News — "High-Tech Cameras Focused on Chicken Breast Defect Detection" [The Poultry Site]</div></div>
-          <div class="award-item"><div class="award-year">Dec 2025</div><div class="award-text">📰 USDA-NIFA News — "Autonomous Pathogen Detection Rover Developed to Evaluate Sanitation Effectiveness in Poultry Processing Facilities"</div></div>
+          <div class="award-item"><div class="award-year">2026</div><div class="award-text">🏆 University of Arkansas Libraries Open Access Publishing Fund, supporting open access publication in Applied Food Research</div></div>
+          <div class="award-item"><div class="award-year">2025</div><div class="award-text">🏆 AAFP Conference, 3rd place poster (thermal imaging for foreign material detection)</div></div>
+          <div class="award-item"><div class="award-year">2024</div><div class="award-text">🏆 ASABE AIM, 4th place, Strawberry Harvester Prototype robotics competition</div></div>
+          <div class="award-item"><div class="award-year">2023</div><div class="award-text">🏆 ASABE AIM, 4th place, Cotton Harvester Prototype robotics competition</div></div>
+          <div class="award-item"><div class="award-year">Dec 2025</div><div class="award-text">📰 USDA-NIFA News: “Autonomous Pathogen Detection Rover Developed to Evaluate Sanitation Effectiveness in Poultry Processing Facilities”</div></div>
+          <div class="award-item"><div class="award-year">Mar 2023</div><div class="award-text">📰 University of Arkansas News: “High-Tech Cameras Focused on Chicken Breast Defect Detection” [The Poultry Site]</div></div>
+        </div>
+      </div>
+      <div class="about-section">
+        <h2 class="about-section-title">Mentoring</h2>
+        <p class="about-para" style="margin-bottom:1rem">I mentor junior graduate, undergraduate, and high-school researchers across imaging, sensing, and robotics projects.</p>
+        <div class="mentor-grid">
+          <div class="mentor-card"><div class="mentor-av">AT</div><div class="mentor-body"><div class="mentor-name">Avisekh Tripathy <span class="mentor-lvl">Ph.D.</span></div><div class="mentor-proj">HSI on Blackberry & Grape</div><div class="mentor-time">01/2026 – Present</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">SM</div><div class="mentor-body"><div class="mentor-name">Swathi Munagala <span class="mentor-lvl">Ph.D.</span></div><div class="mentor-proj">AI-Based Laser Weeding</div><div class="mentor-time">08/2026 – Present</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">CT</div><div class="mentor-body"><div class="mentor-name">Collin Tims <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">Inline Thermal Imaging System Simulation</div><div class="mentor-time">06/2026 – Present</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">MG</div><div class="mentor-body"><div class="mentor-name">Morgan Glass <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">Thermal Imaging for Plant Stress</div><div class="mentor-time">08/2026 – Present</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">YW</div><div class="mentor-body"><div class="mentor-name">Yi Wang <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">HSI on Blackberry</div><div class="mentor-time">05/2026 – Present</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">CB</div><div class="mentor-body"><div class="mentor-name">Chance Blankenship <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">Measuring Twist Angle of Broiler Bone</div><div class="mentor-time">01/2026 – 05/2026</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">YH</div><div class="mentor-body"><div class="mentor-name">Yinuo Huang <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">Extraction of Spectral Data using MATLAB</div><div class="mentor-time">01/2026 – 05/2026</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">HA</div><div class="mentor-body"><div class="mentor-name">Hannah Atungulu <span class="mentor-lvl">H.S.</span></div><div class="mentor-proj">Use of Spectral Sensor</div><div class="mentor-time">08/2025 – 05/2026</div></div></div>
+          <div class="mentor-card"><div class="mentor-av">NS</div><div class="mentor-body"><div class="mentor-name">Nickolas Stall <span class="mentor-lvl">B.S.</span></div><div class="mentor-proj">HSI on Frozen Chicken Breast Fillet</div><div class="mentor-time">05/2023 – 08/2023</div></div></div>
+        </div>
+      </div>
+      <div class="about-section">
+        <h2 class="about-section-title">Patents &amp; IP</h2>
+        <div class="award-list">
+          <div class="award-item"><div class="award-year">Patent Filed</div><div class="award-text"><strong style="color:var(--text)">UADA 2026-005-01</strong><br>Seeing the Unseen: Design of inline thermal detection of plastics in biological products including meat and poultry. Pallerla, Bist, Tian, Subbiah &amp; Wang.</div></div>
+          <div class="award-item"><div class="award-year">Disclosure</div><div class="award-text"><strong style="color:var(--text)">Patent Disclosure Filed · 2026</strong><br>Smartphone-enabled depth-aware transillumination imaging for detection of chicken breast fillet myopathies. Pallerla, Owens &amp; Wang.</div></div>
+        </div>
+      </div>
+      <div class="about-section">
+        <h2 class="about-section-title">Grant Writing</h2>
+        <div class="award-list">
+          <div class="award-item"><div class="award-year">Funded</div><div class="award-text"><strong style="color:var(--text)">USDA NIFA (A1521) · Award 2024-67022-42882 · $299,964</strong><br>Robotic Palpation Calibrated Vision System for Reliable Chicken Woody Breast Evaluation (PI: Dongyi Wang). Developed the ML models for woody breast detection and contributed to proposal preparation.</div></div>
+          <div class="award-item"><div class="award-year">Submitted</div><div class="award-text"><strong style="color:var(--text)">AWS Cloud Credits for Research · 2026</strong><br>GRASPGAIN: Learning Deformable Object Grasping in Clutter from Haptic-Rich Demonstrations (PI: Dongyi Wang).</div></div>
+          <div class="award-item"><div class="award-year">Resubmit</div><div class="award-text"><strong style="color:var(--text)">U.S. Poultry &amp; Egg Association</strong><br>Robotic intervention to reduce woody breast in live broilers and computer vision for detecting affected fillets.</div></div>
+          <div class="award-item"><div class="award-year">Resubmit</div><div class="award-text"><strong style="color:var(--text)">U.S. Poultry &amp; Egg Association</strong><br>Integration of X-ray and hyperspectral imaging for comprehensive foreign material detection in poultry processing plants.</div></div>
+          <div class="award-item"><div class="award-year">Resubmit</div><div class="award-text"><strong style="color:var(--text)">Arkansas Rice Research Grant</strong><br>AI-integrated back-lighting imaging system for postharvest rice quality evaluation.</div></div>
+        </div>
+      </div>
+      <div class="about-section">
+        <h2 class="about-section-title">Memberships &amp; Peer Review</h2>
+        <div class="pill-row">
+          <span class="info-pill"><b>IEEE</b> · Member 2026</span>
+          <span class="info-pill"><b>ASABE</b> · Member 2023 – Present</span>
+          <span class="info-pill"><b>Reviewer</b> · IEEE MultiMedia</span>
+          <span class="info-pill"><b>Reviewer</b> · ASABE (ITSC-16670-2026)</span>
         </div>
       </div>
     </div>
@@ -449,7 +551,7 @@
   <div class="projects-hero">
     <div class="section-label">Research Portfolio</div>
     <h1 class="section-title">Active <em>Projects</em></h1>
-    <p style="font-size:0.78rem;color:var(--text-muted);max-width:500px;line-height:1.75;margin-bottom:0.5rem">Click any project card to explore its 3D model and full research details.</p>
+    <p style="font-size:0.78rem;color:var(--text-muted);max-width:520px;line-height:1.75;margin-bottom:0.5rem">Hover to tilt, click any card to explore its interactive 3D model and full research details.</p>
   </div>
   <div class="projects-filter">
     <span style="font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim);align-self:center">Filter:</span>
@@ -461,6 +563,7 @@
     <button class="pf-btn" onclick="filterProjects('agriculture',this)">Agriculture</button>
     <button class="pf-btn" onclick="filterProjects('published',this)">Published</button>
   </div>
+  <div class="proj-count" id="projCount"></div>
   <div class="projects-grid" id="projectsGrid"></div>
 </div>
 </section>
@@ -628,7 +731,7 @@ const PROJECTS = [
   {
     id: 1, img: 'Project1.png', icon: '📈', thumbScale: 0.95,
     tags: ['imaging', 'ml', 'spectral', 'published'],
-    badge: 'Published · 2024 · IF 12.4',
+    badge: 'Published · 2024 · IF 16.1 · 29 Citations',
     title: 'NAS-WD: Neural Architecture Search for Woody Breast',
     desc: 'Hyperspectral imaging combined with a NAS-optimized Wide-Deep Learning model for simultaneous classification of woody breast severity and regression of hardness (compression force) values — tackling the spatially heterogeneous nature of the myopathy.',
     chips: ['NAS', 'Wide-Deep Learning', 'Hyperspectral', 'Hardness Regression', 'Classification'],
@@ -636,7 +739,7 @@ const PROJECTS = [
       'NAS-optimized architecture balancing wide & deep subnetworks for spectral data',
       'Simultaneous hardness (compression force) regression + three-class categorical classification',
       'Spatial heterogeneity-aware training strategy across cranial, medial, and caudal fillet regions',
-      'Published in Artificial Intelligence in Agriculture (IF 12.4)',
+      'Published in Artificial Intelligence in Agriculture (IF 16.1), my most-cited paper on Google Scholar',
       'Establishes spectral-mechanical correlation baseline for poultry myopathy research'
     ],
     status: 'Artificial Intelligence in Agriculture · 2024',
@@ -645,7 +748,7 @@ const PROJECTS = [
   {
     id: 2, img: 'Project2.png', icon: '🌡️', thumbScale: 0.95,
     tags: ['imaging', 'ml', 'published'],
-    badge: 'Published · 2025 · IF 8.0',
+    badge: 'Published · 2025 · IF 8.0 · Patent Filed',
     title: 'Thermal Imaging + FEA for Transparent Plastic Detection',
     desc: 'A FLIR thermal camera combined with Finite Element Analysis (FEA) simulation to detect transparent plastic contaminants embedded in chicken breast fillets — targeting a critical food safety gap invisible to standard machine vision systems.',
     chips: ['Thermal Imaging', 'FEA Simulation', 'FLIR', 'Contaminant Detection', 'Food Safety'],
@@ -654,7 +757,7 @@ const PROJECTS = [
       'Detects contaminants invisible to RGB and standard near-infrared vision systems',
       'FEA used to model thermal diffusion signatures of embedded foreign bodies',
       'Validated under industrial processing line temperature and lighting conditions',
-      'Published in Food Research International (IF 8.0)'
+      'Published in Food Research International (IF 8.0); inline system patent filed (UADA 2026-005-01)'
     ],
     status: 'Food Research International · 2025',
     link: 'https://doi.org/10.1016/j.foodres.2025.117993'
@@ -662,7 +765,7 @@ const PROJECTS = [
   {
     id: 3, img: 'Project3.png', icon: '🐔', thumbScale: 0.95,
     tags: ['imaging', 'ml', '3d-fusion', 'under-review'],
-    badge: 'Under Review · AI in Agriculture',
+    badge: 'Under Review · EAAI · Patent Disclosed',
     title: 'Smartphone-Enabled Depth-Aware Transillumination Imaging for Woody Breast Severity Classification in Chicken Breast Fillets',
     desc: 'A multi-modal machine learning pipeline that fuses 2D transillumination texture with 3D point-cloud geometry, captured via smartphone depth sensing, to grade woody breast severity in chicken fillets across three classes (normal, mild, severe) — going beyond binary detection to the harder, less-solved problem of severity grading.',
     chips: ['Transillumination', '3D Point Cloud', 'Fusion-DGCNN', 'XGBoost', 'Physics-Guided ML', 'NAS/NEAT'],
@@ -671,15 +774,16 @@ const PROJECTS = [
       'Ensemble of 9 models — 5 point-cloud architectures (incl. Fusion-DGCNN), XGBoost, LightGBM, a NEAT-optimized MLP, and a physics-guided logistic regression built on a Beer-Lambert-derived attenuation feature — selected via exhaustive combination search',
       'Fusion-DGCNN + XGBoost + physics-guided model reaches ~90% test accuracy on 3-class severity grading, competitive with specialized deep-learning systems that require costly hyperspectral instrumentation or destructive sample prep',
       'Point-cloud model hyperparameters tuned via evolutionary neural architecture search; MLP topology evolved via NEAT',
-      'Under review in AI in Agriculture'
+      'Under review in Engineering Applications of Artificial Intelligence; preprint on SSRN',
+      'Oral presentation at AI in Agriculture 2026; patent disclosure filed'
     ],
-    status: 'Under Review · AI in Agriculture'
-  }
-
+    status: 'Under Review · Engineering Applications of AI',
+    link: 'https://doi.org/10.2139/ssrn.6352005'
+  },
   {
     id: 4, img: 'Project4.png', icon: '📡',
-    tags: ['spectral', 'ml'],
-    badge: 'Manuscript in Progress · 2026',
+    tags: ['spectral', 'ml', 'published'],
+    badge: 'Published · 2026 · IF 5.4',
     title: 'Low-Cost Multispectral Sensing with SparkFun AS7265x',
     desc: 'Evaluates the $70 SparkFun AS7265x 18-channel multispectral sensor (410–940 nm) as a viable, factory-calibrated alternative to expensive hyperspectral systems for three-class woody breast severity classification in broiler breast fillets.',
     chips: ['AS7265x', 'Multispectral', '18-Channel NIR', 'Random Forest', 'Low-Cost Sensing'],
@@ -688,16 +792,17 @@ const PROJECTS = [
       'Statistical analysis identified 14 of 18 bands as significant; strongest separation in NIR (680–940 nm)',
       'Random Forest achieved 92% three-class test accuracy — competitive with full hyperspectral models',
       'Spectral signatures captured: pigment variation, fibrosis-related scattering, altered water binding',
-      'Sensor costs ~$70 vs. $20,000–$200,000 for research-grade HSI systems — a >99% cost reduction'
+      'Sensor costs ~$70 vs. $20,000–$200,000 for research-grade HSI systems — a >99% cost reduction',
+      'Published in Applied Food Research 6(2), 102295 (IF 5.4), open access via the UARK Libraries OA Fund'
     ],
-    status: 'Manuscript in Preparation · 2026',
-    link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
+    status: 'Applied Food Research · 2026',
+    link: 'https://doi.org/10.1016/j.afres.2026.102295'
   },
   {
     id: 5, img: 'Project5.png', icon: '🤚', thumbScale: 0.95,
     tags: ['robotics', 'imaging', 'ml'],
-    badge: 'Ongoing · 2026–2027',
-    title: 'TACTUS: Tactile Adaptive 3D Sensing Array for Woody Breast',
+    badge: 'Under Review · IEEE TIM',
+    title: 'TACTUS: A Robotic Palpation System for Spatially Heterogeneous Hardness Mapping of Woody Breast',
     desc: 'A Hybrid Adaptive Bump Force Pad with independently actuated sensor bumps that conform to irregular fillet topography, simultaneously recording distributed forces and surface depth to generate 3D hardness maps of spatially heterogeneous woody breast tissue.',
     chips: ['Tactile Sensing', 'Force Mapping', '3D Hardness Map', 'Shape-Adaptive', 'Piezoresistive'],
     highlights: [
@@ -705,9 +810,10 @@ const PROJECTS = [
       'Simultaneous distributed force measurement + depth acquisition — first system combining both',
       'Generates 3D spatial hardness maps revealing patchy stiffness zones characteristic of woody breast',
       'Addresses the key limitation of destructive localized tests (MORS, compression force) that miss spatial heterogeneity',
-      'Targets mild woody breast where internal stiffness is invisible on the surface — the hardest detection case'
+      'Targets mild woody breast where internal stiffness is invisible on the surface — the hardest detection case',
+      'Supported by USDA NIFA Award 2024-67022-42882; under review at IEEE Transactions on Instrumentation and Measurement'
     ],
-    status: 'Manuscript in Preparation · 2026',
+    status: 'Under Review · IEEE Trans. Instrumentation & Measurement',
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
   {
@@ -747,7 +853,7 @@ const PROJECTS = [
   {
     id: 8, img: 'Project8.png', icon: '🌾',
     tags: ['imaging', 'spectral', 'ml', 'agriculture', 'published'],
-    badge: 'Major Revision Done · ASABE',
+    badge: 'Published · 2026 · Journal of the ASABE',
     title: 'Rice Chalkiness Classification via HSI and Stacking ML',
     desc: 'Non-invasive hyperspectral imaging (400–1000 nm) combined with a Stacking Random Forest Meta-Model (SFRM) to classify chalkiness severity (low / moderate / high) in both rough and brown rice — achieving up to 96.96% accuracy for brown rice.',
     chips: ['HSI 400–1000 nm', 'SFRM', 'Rice Quality', 'Chalkiness', 'SVM', 'MLP'],
@@ -756,25 +862,28 @@ const PROJECTS = [
       'SFRM (Stacking Random Forest Meta-Model) outperformed SVM and MLP: 87.8% rough rice, 96.96% brown rice',
       'ANOVA + Tukey HSD confirmed significant reflectance differences across all chalkiness categories',
       'Higher chalkiness correlated with higher mean reflectance — air pockets in starch disrupt light transmission',
-      'Major revision completed and resubmitted to ASABE Transactions of the ASABE'
+      'Published in the Journal of the ASABE (2026)'
     ],
-    status: 'Major Revision Completed · ASABE Transactions',
-    link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
+    status: 'Journal of the ASABE · 2026',
+    link: 'https://elibrary.asabe.org/abstract.asp?aid=56126&t=2&redir=&redirType='
   },
   {
     id: 9, img: 'Project9.png', icon: '🕷️', thumbScale: 0.95,
     tags: ['robotics', 'imaging', 'agriculture'],
     badge: 'Ongoing · 2025–2026',
-    title: 'SPIDER: Sensing Platform for Intelligent Data-collection and Environmental Reconnaissance',
+    title: 'SPIDER: Smart Precision Intelligent Data Extraction Rover',
     desc: 'A hexapod robot with a mounted sensor arm designed for autonomous field survey and multimodal data collection in agricultural environments — combining legged locomotion for terrain adaptability with onboard imaging and spectral sensing.',
-    chips: ['Hexapod', 'Field Robotics', 'Sensor Arm', 'Autonomous Survey', 'Multimodal Sensing'],
+    chips: ['Hexapod', 'Reinforcement Learning', 'Field Robotics', 'Crop Scouting', 'Multimodal Sensing'],
     highlights: [
       'Six-legged locomotion enables stable traversal over uneven field terrain where wheeled platforms fail',
       'Articulated sensor arm extends reach for close-range imaging, spectral, and depth data acquisition',
       'Onboard multimodal payload: RGB, hyperspectral, and depth sensors for comprehensive field mapping',
       'Designed for crop scouting, soil surface inspection, and targeted sample collection',
-      'Ongoing — locomotion control, sensor integration, and field trial protocols in development'
+      'Next step: reinforcement-learning-based autonomous navigation around plants, obstacles, uneven terrain, and tight spaces',
+      'Long-term scouting goals: seedling counting, growth tracking, plant stress and disease detection, and individual plant monitoring',
+      'Ongoing — first-steps locomotion and control experiments underway'
     ],
+    post: 'https://www.linkedin.com/posts/chaitanya-kumar-reddy-pallerla-204835248_spider-agriculturalrobotics-reinforcementlearning-ugcPost-7502117103034900480-0ath/',
     status: 'Ongoing · Platform Development & Field Trials',
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
   },
@@ -790,10 +899,48 @@ const PROJECTS = [
       'ROS-based autonomy stack with obstacle avoidance for constrained wet-processing facility environments',
       'End goal: autonomous swabbing of food-contact surfaces following planned sanitation inspection routes',
       'Swab results georeferenced to facility floor map to produce quantitative spatial biosafety contamination maps',
-      'Ongoing — navigation pipeline being validated; swabbing end-effector integration in progress'
+      'Ongoing — navigation pipeline being validated; swabbing end-effector integration in progress',
+      'Related work: 3D SLAM + RANSAC + language-guided swabbing (ASABE AIM 2026 oral) and the autonomous robotic-biosensing platform (Proc. SPIE 14053), featured by USDA-NIFA News'
     ],
     status: 'Ongoing · Navigation & Swabbing Integration',
     link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ'
+  },
+  {
+    id: 11, img: 'MyoVision.png', icon: '📱', thumbScale: 1,
+    tags: ['imaging', 'ml', 'published'],
+    badge: 'Published · CVPR MetaFood 2026',
+    title: 'MyoVision: Mobile Research Tool & NEATBoost-Attention Ensemble',
+    desc: 'A smartphone-based research platform for chicken breast quality assessment that combines 14-bit RAW transillumination imaging, TrueDepth 3D point clouds, and AI-driven feature extraction to classify Normal, Woody Breast, and Spaghetti Meat fillets in real time.',
+    chips: ['iOS App', 'RAW Transillumination', 'TrueDepth 3D', 'NEATBoost-Attention', 'Edge AI', 'Myopathy'],
+    highlights: [
+      '14-bit RAW transillumination imaging plus TrueDepth / rear LiDAR 3D point-cloud capture on a single phone',
+      'In-app tools for segmentation, feature extraction, 3D mesh generation, and point-to-point measurement',
+      'NEATBoost-Attention: a neuroevolution-optimized ensemble for three-class myopathy classification',
+      '82.4% test accuracy (F1 = 0.83) across Normal, Woody Breast, and Spaghetti Meat',
+      'Shows consumer-grade mobile sensing can rival expensive laboratory systems for standardized multimodal data collection',
+      'Published in the CVPR 2026 MetaFood Workshop (CVF Open Access)'
+    ],
+    status: 'CVPR MetaFood Workshop · 2026',
+    link: 'https://openaccess.thecvf.com/content/CVPR2026W/MTF/papers/Pallerla_MyoVision_A_Mobile_Research_Tool_and_NEATBoost-Attention_Ensemble_Framework_for_CVPRW_2026_paper.pdf',
+    post: 'https://www.linkedin.com/posts/chaitanya-kumar-reddy-pallerla-204835248_cvpr2026-metafoods-computervision-ugcPost-7450368534750330880-5G7u/'
+  },
+  {
+    id: 12, img: 'DRACO.png', icon: '🚁', thumbScale: 0.92,
+    tags: ['robotics', 'agriculture'],
+    badge: 'Early Prototype · 2026',
+    title: 'DRACO: Dynamic Reconfigurable Aerial Craft with Onboard Manipulation',
+    desc: 'A reconfigurable quadrotor with folding articulated arms, servo-actuated tilt rotors, and a small onboard robotic arm, built to physically interact with plants for targeted pollination, harvesting, and precision data collection.',
+    chips: ['Quadrotor', 'Tilt Rotors', 'Folding Arms', 'Aerial Manipulation', 'Pollination'],
+    highlights: [
+      'Articulated folding arms change the drone footprint to maneuver in confined spaces',
+      'Servo-actuated tilt rotors provide thrust vectoring for precise positioning',
+      'Onboard robotic arm for direct plant interaction: pollination, harvesting, and sampling',
+      'Noise study comparing a carbon-fiber propeller with a 3D-printed toroidal propeller; thrust comparison and integration next',
+      'Grew out of a graduate capstone where students built drones from scratch'
+    ],
+    status: 'Ongoing · Early Prototype',
+    link: 'https://scholar.google.com/citations?user=JYL8F98AAAAJ',
+    post: 'https://www.linkedin.com/posts/chaitanya-kumar-reddy-pallerla-204835248_draco-aerialrobotics-agriculturalrobotics-ugcPost-7502131968776671232-bf5Y/'
   }
 ];
 
@@ -801,6 +948,8 @@ function renderProjects(filter) {
   const grid = document.getElementById('projectsGrid');
   const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.tags.includes(filter));
   grid.innerHTML = '';
+  const cnt = document.getElementById('projCount');
+  if (cnt) cnt.innerHTML = `Showing <b>${list.length}</b> of ${PROJECTS.length} projects`;
   list.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'proj-card';
@@ -809,10 +958,12 @@ function renderProjects(filter) {
     const imgStyle = p.thumbScale
       ? `style="object-fit:contain;transform:scale(${p.thumbScale});transition:transform 0.4s ease"`
       : `style="transition:transform 0.4s ease"`;
+    const thumb = p.img
+      ? `<img src="${p.img}" alt="${p.title}" ${imgStyle} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="proj-thumb-fallback" style="display:none">${p.icon}</div>`
+      : `<div class="proj-thumb-fallback">${p.icon}</div>`;
     card.innerHTML = `
       <div class="proj-thumb">
-        <img src="${p.img}" alt="${p.title}" ${imgStyle} onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="proj-thumb-fallback" style="display:none">${p.icon}</div>
+        ${thumb}
         <span class="proj-thumb-badge">${p.badge}</span>
         <span class="proj-open-hint">Explore →</span>
       </div>
@@ -822,7 +973,7 @@ function renderProjects(filter) {
         <div class="proj-desc">${p.desc}</div>
         <div class="proj-footer">
           <div class="proj-status">${p.status}</div>
-          <span class="proj-link">Details ↗</span>
+          <span class="proj-link">${p.post ? '<span class="li-dot">in</span>' : ''}Details ↗</span>
         </div>
       </div>`;
     card.addEventListener('click', () => openDrawer(p.id));
@@ -865,8 +1016,9 @@ function openDrawer(id) {
   }
   const p = PROJECTS.find(x => x.id === id);
   drawerLabel.textContent = `Project ${String(id).padStart(2,'0')} of ${PROJECTS.length}`;
-  const linkLabel = p.link.includes('ssrn') ? 'Read Preprint ↗' :
-                    p.link.includes('scholar') ? 'Google Scholar ↗' : 'View Paper ↗';
+  const link = p.link || 'https://scholar.google.com/citations?user=JYL8F98AAAAJ';
+  const linkLabel = link.includes('.pdf') ? 'Read Paper (PDF) ↗' : link.includes('ssrn') ? 'Read Preprint ↗' :
+                    link.includes('scholar') ? 'Google Scholar ↗' : 'View Paper ↗';
   drawerContent.innerHTML = `
     <div class="proj-panel-badge">${p.badge}</div>
     <div class="proj-panel-title">${p.title}</div>
@@ -874,7 +1026,8 @@ function openDrawer(id) {
     <div class="proj-panel-chips">${p.chips.map(c=>`<span class="proj-panel-chip">${c}</span>`).join('')}</div>
     <div class="proj-panel-highlights">${p.highlights.map(h=>`<div class="proj-panel-hl">${h}</div>`).join('')}</div>
     <div class="proj-panel-actions">
-      <a class="proj-panel-link" href="${p.link}" target="_blank" rel="noopener">${linkLabel}</a>
+      ${p.link && !link.includes('scholar') || !p.post ? `<a class="proj-panel-link" href="${link}" target="_blank" rel="noopener">${linkLabel}</a>` : ''}
+      ${p.post ? `<a class="proj-panel-link li-btn" href="${p.post}" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn Post ↗</a>` : ''}
       <span class="proj-panel-status">${p.status}</span>
     </div>`;
   drawer.classList.add('open');
@@ -948,6 +1101,8 @@ renderProjects('all');
     wrap.style.opacity=pageActive?'1':'0';
     wrap.style.pointerEvents='none';
   };
+  // handle deep links (?page=about) that ran before this wrapper existed
+  if(!document.getElementById('page-home').classList.contains('active')){ pageActive=false; wrap.style.opacity='0'; }
 
   const renderer=new THREE.WebGLRenderer({canvas:tCanvas,antialias:true,alpha:true,premultipliedAlpha:false});
   renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
@@ -1090,5 +1245,6 @@ renderProjects('all');
   animate();
 })();
 </script>
+<script src="fx.js"></script>
 </body>
 </html>

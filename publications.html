@@ -123,6 +123,47 @@
     .coauthor-card .scholar-badge{margin-left:auto;flex-shrink:0;opacity:0;transition:opacity 0.2s;color:var(--accent);font-size:0.65rem;letter-spacing:0.08em;font-weight:700;}
     .coauthor-card:hover .scholar-badge{opacity:1;}
     ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:4px;}
+
+    /* ===== NEW: impact panel, type badges, cite ===== */
+    .stats-bar{margin-bottom:1.2rem;}
+    .impact-panel{display:grid;grid-template-columns:1.3fr 1fr;gap:1.2rem;margin-bottom:3.5rem;}
+    .impact-left,.impact-right{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.6rem;}
+    .impact-label,.tp-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:1rem;}
+    .cite-chart{display:flex;align-items:flex-end;gap:1.4rem;height:150px;padding:0 0.4rem;}
+    .cbar-col{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;}
+    .cbar-val{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:0.3rem;opacity:0;transition:opacity .6s .9s;}
+    .cbar-track{flex:1;width:100%;max-width:64px;display:flex;align-items:flex-end;}
+    .cbar{width:100%;height:0;border-radius:8px 8px 3px 3px;background:linear-gradient(180deg,var(--accent2),var(--accent));box-shadow:0 0 24px rgba(255,107,43,.35);transition:height 1.2s cubic-bezier(.2,.8,.2,1);}
+    .cite-chart.grow .cbar{height:var(--h);}
+    .cite-chart.grow .cbar-val{opacity:1;}
+    .cbar-yr{font-size:0.62rem;color:var(--text-dim);margin-top:0.45rem;letter-spacing:0.1em;}
+    .impact-note{font-size:0.58rem;color:var(--text-dim);margin-top:0.9rem;letter-spacing:0.05em;}
+    .impact-note a,.impact-right a{color:var(--accent);text-decoration:none;}
+    .impact-right{display:flex;flex-direction:column;justify-content:center;}
+    .impact-right a{font-family:'DM Serif Display',serif;font-size:1.15rem;line-height:1.35;color:var(--text);transition:color .2s;}
+    .impact-right a:hover{color:var(--accent);}
+    .tp-cites{font-size:0.65rem;color:var(--accent2);margin-top:0.8rem;letter-spacing:0.06em;}
+    .pub-type{font-size:0.55rem;padding:0.12rem 0.5rem;border-radius:4px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--border-bright);color:var(--text-muted);}
+    .pub-type.t-journal{border-color:rgba(78,205,196,.45);color:#4ecdc4;}
+    .pub-type.t-conference{border-color:rgba(155,138,255,.5);color:#9b8aff;}
+    .pub-type.t-review{border-color:rgba(255,179,71,.5);color:var(--accent2);}
+    .pub-type.t-chapter{border-color:rgba(240,128,170,.5);color:#f080aa;}
+    .pub-type.t-first{border-color:rgba(255,107,43,.5);color:var(--accent);background:rgba(255,107,43,.08);}
+    body.light .pub-type.t-journal{color:#1a8f88;} body.light .pub-type.t-conference{color:#6a55e0;} body.light .pub-type.t-chapter{color:#c2416f;}
+    .pub-actions{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;}
+    .cite-btn{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:50px;border:1px solid var(--border-bright);background:transparent;color:var(--text-muted);cursor:pointer;transition:all .2s;}
+    .cite-btn:hover{border-color:var(--accent);color:var(--accent);}
+    .filter-btn .fc{font-size:0.55rem;margin-left:0.4rem;padding:0.05rem 0.35rem;border-radius:20px;background:rgba(255,107,43,.12);color:var(--accent);}
+    .filter-bar{flex-wrap:wrap;}
+    .pub-group-head{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;margin:2.6rem 0 1.1rem;}
+    .pub-group-head:first-child{margin-top:0.5rem;}
+    .pub-group-head h2{font-family:'DM Serif Display',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:400;}
+    .pub-group-head h2 em{color:var(--accent);font-style:italic;}
+    .pub-group-count{font-size:0.65rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:50px;padding:0.15rem 0.6rem;}
+    .pub-group-line{flex:1;min-width:40px;height:1px;background:var(--border);}
+    .pub-group-note{font-size:0.6rem;color:var(--text-dim);letter-spacing:0.08em;width:100%;margin-top:-0.4rem;}
+    @media(max-width:700px){.impact-panel{grid-template-columns:1fr;}}
+    @media(prefers-reduced-motion:reduce){.cbar,.cbar-val{transition:none;}}
   </style>
 </head>
 <body>
@@ -182,23 +223,38 @@
   <div class="hero">
     <div class="hero-label">Research Output</div>
     <h1 class="hero-title">My<br><em>Publications</em></h1>
-    <p class="hero-subtitle">Peer-reviewed research in intelligent food systems, hyperspectral imaging, and machine learning.</p>
+    <p class="hero-subtitle">Journal articles, conference papers, and manuscripts under review in intelligent food systems, multimodal imaging, robotics, and machine learning.</p>
   </div>
   <div class="stats-bar" id="statsBar" style="display:none">
-    <div class="stat-item"><span class="stat-value" id="statPapers">—</span><span class="stat-label">Publications</span></div>
-    <div class="stat-item"><span class="stat-value" id="statCitations">—</span><span class="stat-label">Total Citations</span></div>
+    <div class="stat-item"><span class="stat-value" id="statPapers">—</span><span class="stat-label">Published</span></div>
+    <div class="stat-item"><span class="stat-value" id="statReview">—</span><span class="stat-label">Under Review</span></div>
+    <div class="stat-item"><span class="stat-value" id="statCitations">—</span><span class="stat-label">Citations</span></div>
     <div class="stat-item"><span class="stat-value" id="statH">—</span><span class="stat-label">h-index</span></div>
     <div class="stat-item"><span class="stat-value" id="statI10">—</span><span class="stat-label">i10-index</span></div>
+  </div>
+  <div class="impact-panel" id="impactPanel" style="display:none">
+    <div class="impact-left">
+      <div class="impact-label">Citations per year</div>
+      <div class="cite-chart" id="citeChart"></div>
+      <div class="impact-note">Source: <a href="https://scholar.google.com/citations?user=JYL8F98AAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> · as of <span id="scholarAsOf"></span></div>
+    </div>
+    <div class="impact-right" id="topPaper"></div>
   </div>
   <div class="filter-bar" id="filterBar" style="display:none">
     <span class="filter-label">Filter:</span>
     <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="published">Published</button>
+    <button class="filter-btn" data-filter="journal">Journal</button>
+    <button class="filter-btn" data-filter="conference">Conference</button>
+    <button class="filter-btn" data-filter="review">Under Review</button>
+    <button class="filter-btn" data-filter="chapter">Chapter</button>
+    <button class="filter-btn" data-filter="first">First Author</button>
     <div class="sort-group">
       <span class="sort-label">Sort:</span>
       <button class="sort-btn active" id="sortYear" onclick="setSort('year')">Year <span class="sort-arrow" id="arrowYear">↓</span></button>
       <button class="sort-btn" id="sortCitations" onclick="setSort('citations')">Citations <span class="sort-arrow" id="arrowCite">↓</span></button>
     </div>
-    <input class="search-input" type="text" placeholder="Search titles…" id="searchInput" />
+    <input class="search-input" type="text" placeholder="Search titles, authors, venues…" id="searchInput" />
   </div>
   <div class="loading-state" id="loadingState"><div class="loader-ring"></div><div class="loading-text">Fetching from Google Scholar…</div></div>
   <div class="pub-list" id="pubList"></div>
@@ -228,19 +284,38 @@
     return authors.replace(/(Chaitanya|Pallerla|C\.?\s*K\.?\s*R\.?\s*Pallerla|Chaitanya Kumar)/gi,'<span class="me">$1</span>');
   }
 
+  let shownPapers = [];
+  const TYPE_LABEL = { journal: 'Journal', conference: 'Conference', review: 'Under Review', chapter: 'Book Chapter' };
   function renderCards(papers) {
+    shownPapers = papers;
     const list = document.getElementById('pubList');
     Array.from(list.children).forEach(c => { c.style.transition='opacity 0.18s,transform 0.18s'; c.style.opacity='0'; c.style.transform='translateY(-8px)'; });
     setTimeout(() => {
       list.innerHTML = '';
       if (!papers.length) { list.innerHTML='<div style="text-align:center;padding:3rem;color:var(--text-dim);font-size:0.75rem;letter-spacing:0.1em;">No matching publications found.</div>'; return; }
-      papers.forEach((p,i) => {
-        const card = document.createElement('div');
-        card.className='pub-card'; card.style.animationDelay=`${i*0.07}s`; card.style.cursor='pointer';
-        card.onclick=()=>window.open(p.link,'_blank');
-        card.innerHTML=`<div class="pub-meta">${p.year?`<span class="pub-year">${p.year}</span>`:''}<span class="pub-venue">${p.venue||'Journal / Conference'}</span>${p.citations>0?`<span class="pub-citations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>${p.citations} citation${p.citations!==1?'s':''}</span>`:''}</div><div class="pub-title">${p.title}</div><div class="pub-authors">${highlightMe(p.authors)}</div><a class="pub-link" href="${p.link}" target="_blank" onclick="event.stopPropagation()">View Paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>`;
-        list.appendChild(card);
+      const GROUPS = [
+        { key: 'pub', title: 'Published <em>Papers</em>', note: 'Peer-reviewed journal articles and conference papers', test: TYPE_TEST.published },
+        { key: 'rev', title: 'Under <em>Review</em>', note: 'Submitted manuscripts, not yet published', test: TYPE_TEST.review },
+        { key: 'chap', title: 'Book <em>Chapters</em>', note: 'Invited and edited volume contributions', test: TYPE_TEST.chapter },
+      ];
+      const ordered = [];
+      GROUPS.forEach(g => {
+        const items = papers.filter(g.test);
+        if (!items.length) return;
+        const h = document.createElement('div');
+        h.className = 'pub-group-head';
+        h.innerHTML = `<h2>${g.title}</h2><span class="pub-group-count">${items.length}</span><div class="pub-group-line"></div><span class="pub-group-note">${g.note}</span>`;
+        list.appendChild(h);
+        items.forEach(p => { ordered.push(p); renderOne(p, ordered.length - 1); });
       });
+      shownPapers = ordered;
+      function renderOne(p, i) {
+        const card = document.createElement('div');
+        card.className='pub-card'; card.style.animationDelay=`${Math.min(i,10)*0.06}s`;
+        if (p.link) { card.style.cursor='pointer'; card.onclick=()=>window.open(p.link,'_blank'); }
+        card.innerHTML=`<div class="pub-meta">${p.year?`<span class="pub-year">${p.year}</span>`:''}<span class="pub-type t-${p.type}">${TYPE_LABEL[p.type]||''}</span>${p.first?'<span class="pub-type t-first">First Author</span>':''}<span class="pub-venue">${p.venue||'Journal / Conference'}</span>${p.citations>0?`<span class="pub-citations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>${p.citations} citation${p.citations!==1?'s':''}</span>`:''}</div><div class="pub-title">${p.title}</div><div class="pub-authors">${highlightMe(p.authors)}</div><div class="pub-actions">${p.link?`<a class="pub-link" href="${p.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">View Paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>`:''}<button class="cite-btn" onclick="event.stopPropagation();copyCite(this,${i})">Cite</button></div>`;
+        list.appendChild(card);
+      }
     }, list.children.length > 0 ? 200 : 0);
   }
 
@@ -255,7 +330,7 @@
   }
   function applyFilters() {
     const q=document.getElementById('searchInput').value.toLowerCase();
-    let f=[...allPapers];
+    let f=allPapers.filter(TYPE_TEST[currentType]);
     if(q) f=f.filter(p=>p.title.toLowerCase().includes(q)||p.authors.toLowerCase().includes(q)||p.venue.toLowerCase().includes(q));
     f.sort((a,b)=>{let va=currentSort==='year'?parseInt(a.year)||0:a.citations||0,vb=currentSort==='year'?parseInt(b.year)||0:b.citations||0;return sortAsc[currentSort]?va-vb:vb-va;});
     renderCards(f);
@@ -263,154 +338,278 @@
   document.getElementById('searchInput').addEventListener('input',applyFilters);
 
   const FALLBACK_PAPERS = [
-{
-title: "Assessing the Feasibility of Low-Cost Multispectral Sensing for Woody Breast Severity Classification",
-authors: "Chaitanya Pallerla, Yihong Feng, Avisekh Tripathy, Yang Tian, Pouya Sohrabipour, Amirreza Davar, Casey M. Owens, Philip G. Crandall, Jeyamkondan Subbiah, Dongyi Wang",
-venue: "Applied Food Research, 6(2), 102295",
-year: "2026",
-citations: 0,
-link: "https://doi.org/10.1016/j.afres.2026.102295"
-},
-{
-title: "Smartphone-Enabled Depth-Aware Transillumination Imaging for Detection of Chicken Breast Fillet Myopathies in Chicken Fillets",
-authors: "Chaitanya Pallerla, Ramesh Bahadur Bist, Yihong Feng, Yang Tian, Pouya Sohrabipour, Amirreza Davar, Casey M. Owens, Jeyamkondan Subbiah, Dongyi Wang",
-venue: "Under Review (SSRN)",
-year: "2026",
-citations: 0,
-link: "https://doi.org/10.2139/ssrn.6352005"
-},
-{
-title: "MyoVision: A Mobile Research Tool and NEATBoost-Attention Ensemble Framework for Real Time Chicken Breast Myopathy Detection",
-authors: "Chaitanya Pallerla, Siavash Mahmoudi, Dongyi Wang",
-venue: "CVPR MetaFood 2026 Workshop (Accepted)",
-year: "2026",
-citations: 0,
-link: "https://openaccess.thecvf.com/content/CVPR2026W/MTF/html/Pallerla_MyoVision_A_Mobile_Research_Tool_and_NEATBoost-Attention_Ensemble_Framework_for_CVPRW_2026_paper.html"
-},
-{
-title: "Context-Aware Force Estimation for Deformable Tool Manipulation in Robotic Environmental Swabbing via Few-Shot Continual Adaptation",
-authors: "Siavash Mahmoudi, Chaitanya Pallerla, Dongyi Wang",
-venue: "Under Review",
-year: "2026",
-citations: 0,
-link: ""
-},
-{
-title: "ChicGrasp: Imitation-Learning-Based Customized Dual-Jaw Gripper Control for Manipulation of Delicate, Irregular Bio-Products",
-authors: "Amirreza Davar, Zhiqin Xu, Siavash Mahmoudi, Pouya Sohrabipour, Chaitanya Pallerla, Yu She, Wan Shou, Philip G. Crandall, Dongyi Wang",
-venue: "Advanced Robotics Research",
-year: "2026",
-citations: 2,
-link: "https://doi.org/10.1002/adrr.202500149"
-},
-{
-title: "Portable Electrochemical Impedance Biosensing with DRT Enabled Machine Learning for Detecting E. coli O157:H7 in Poultry Meat",
-authors: "Yang Tian, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Ramesh Bahadur Bist, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
-venue: "Frontiers in Artificial Intelligence, 9:1741144",
-year: "2026",
-citations: 5,
-link: "https://doi.org/10.3389/frai.2026.1741144"
-},
-{
-title: "Non-Invasive Classification of Chalkiness Levels in Rough and Brown Rice via Hyperspectral Imaging and Machine Learning",
-authors: "Charles Tachie, Chaitanya Pallerla, Kanika Luthra, Griffiths G. Atungulu, Dongyi Wang",
-venue: "Journal of ASABE",
-year: "2026",
-citations: 0,
-link: ""
-},
-{
-title: "Neural Network Architecture Search Enabled Wide-Deep Learning (NAS-WD) for Spatially Heterogeneous Property-Aware Chicken Woody Breast Classification and Hardness Regression",
-authors: "Chaitanya Pallerla, Yihong Feng, Casey M. Owens, Ramesh Bahadur Bist, Siavash Mahmoudi, Pouya Sohrabipour, Amirreza Davar, Dongyi Wang",
-venue: "Artificial Intelligence in Agriculture, 14, 73-85",
-year: "2024",
-citations: 27,
-link: "https://doi.org/10.1016/j.aiia.2024.11.003"
-},
-{
-title: "Thermal Imaging-Guided Detection of Transparent Plastic Contaminants on Chicken Breast: A Combined Vision and Simulation Approach",
-authors: "Chaitanya Pallerla, Ramesh Bahadur Bist, Casey M. Owens, Shawna Weimer, Jeyamkondan Subbiah, Dongyi Wang",
-venue: "Food Research International, 224, 117993",
-year: "2025",
-citations: 1,
-link: "https://doi.org/10.1016/j.foodres.2025.117993"
-},
-{
-title: "Palm-Size Wireless Piezoelectric Immune-Biosensing System for Rapid E. coli O157:H7 Detection",
-authors: "Yang Tian, Lily Kelso, Yiting Xiao, Chaitanya Pallerla, Ramesh Bahadur Bist, Siavash Mahmoudi, Ziyu Liu, Han Xiong, Jeyamkondan Subbiah, Terry Howell, Dongyi Wang",
-venue: "Sensors International, 6, 100341",
-year: "2025",
-citations: 1,
-link: "https://doi.org/10.1016/j.sintl.2025.100341"
-},
-{
-title: "Cost-Effective Active Laser Scanning System for Depth-Aware Deep-Learning-Based Instance Segmentation in Poultry Processing",
-authors: "Pouya Sohrabipour, Chaitanya Kumar Reddy Pallerla, Amirreza Davar, Siavash Mahmoudi, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",
-venue: "AgriEngineering, 7(3), 77",
-year: "2025",
-citations: 4,
-link: "https://doi.org/10.3390/agriengineering7030077"
-},
-{
-title: "Evaluation of Robotic Swabbing and Fluorescent Sensing to Monitor the Hygiene of Food Contact Surfaces",
-authors: "Siavash Mahmoudi, Chloe Griscom, Pouya Sohrabipour, Yang Tian, Chaitanya Pallerla, Philip Crandall, Dongyi Wang",
-venue: "Foods, 14(19), 3311",
-year: "2025",
-citations: 4,
-link: "https://doi.org/10.3390/foods14193311"
-},
-{
-title: "Synthetic Data Augmentation for Enhanced Chicken Carcass Instance Segmentation",
-authors: "Yihong Feng, Chaitanya Pallerla, Xiaomin Lin, Akhilesh Suresh, Pouya Sohrabipour, Philip Crandall",
-venue: "IEEE Transactions on AgriFood Electronics",
-year: "2025",
-citations: 2,
-link: "https://doi.org/10.1109/TAFE.2025.3644764"
-},
-{
-title: "Automated Detection of Kinky Back in Broiler Chickens Using Optimized Deep Learning Techniques",
-authors: "Ramesh Bahadur Bist, Andi Asnayanti, Anh Dang Trieu Do, Yang Tian, Chaitanya Pallerla, Dongyi Wang, Adnan A. K. Alrubaye",
-venue: "AgriEngineering, 7(12), 415",
-year: "2025",
-citations: 0,
-link: "https://doi.org/10.3390/agriengineering7120415"
-},
-{
-title: "Portable Broadband Dielectric Impedance Immunosensor for Label-Free Escherichia coli O157 Screening in Poultry Samples",
-authors: "Yang Tian, Yinuo Huang, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
-venue: "Under Review (Microchemical Journal, SSRN)",
-year: "2026",
-citations: 0,
-link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6366921"
-},
-{
-title: "Efficient Auto-Labeling of Large-Scale Poultry Datasets (ALPD) Using Semi-Supervised Models, Active Learning, and Prompt-then-Detect Approach",
-authors: "Ramesh Bahadur Bist, Lilong Chai, Shawna Weimer, Hannah Atungulu, Chantel Pennicott, Xiao Yang, Sachin Subedi, Chaitanya Pallerla, Yang Tian, Dongyi Wang",
-venue: "Under Review (AgriEngineering)",
-year: "2026",
-citations: 1,
-link: ""
-}
+ {
+  "title": "Assessing the Feasibility of Low-Cost Multispectral Sensing for Woody Breast Severity Classification",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Avisekh Tripathy, Yang Tian, Pouya Sohrabipour, Amirreza Davar, Casey M. Owens, Philip G. Crandall, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Applied Food Research, 6(2), 102295 · IF 5.4",
+  "year": "2026",
+  "citations": 0,
+  "type": "journal",
+  "first": true,
+  "link": "https://doi.org/10.1016/j.afres.2026.102295"
+ },
+ {
+  "title": "TACTUS: A Robotic Palpation System for Spatially Heterogeneous Hardness Mapping of Woody Breast Myopathy",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Yang Tian, Casey M. Owens, Dongyi Wang",
+  "venue": "Under Review · IEEE Transactions on Instrumentation and Measurement",
+  "year": "2026",
+  "citations": 0,
+  "type": "review",
+  "first": true,
+  "link": ""
+ },
+ {
+  "title": "Smartphone-Enabled Depth-Aware Transillumination Imaging for Woody Breast Severity Classification in Chicken Breast Fillets",
+  "authors": "Chaitanya Pallerla, Ramesh Bahadur Bist, Yihong Feng, Yang Tian, Shiva Paudel, Casey M. Owens, Cengiz Koparan, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Under Review · Engineering Applications of Artificial Intelligence (SSRN preprint)",
+  "year": "2026",
+  "citations": 0,
+  "type": "review",
+  "first": true,
+  "link": "https://doi.org/10.2139/ssrn.6352005"
+ },
+ {
+  "title": "MyoVision: A Mobile Research Tool and NEATBoost-Attention Ensemble Framework for Real Time Chicken Breast Myopathy Detection",
+  "authors": "Chaitanya Pallerla, Siavash Mahmoudi, Dongyi Wang",
+  "venue": "CVPR MetaFood 2026 Workshop · CVF Open Access",
+  "year": "2026",
+  "citations": 0,
+  "type": "conference",
+  "first": true,
+  "link": "https://openaccess.thecvf.com/content/CVPR2026W/MTF/papers/Pallerla_MyoVision_A_Mobile_Research_Tool_and_NEATBoost-Attention_Ensemble_Framework_for_CVPRW_2026_paper.pdf"
+ },
+ {
+  "title": "A Non-Invasive Alternative to RFID: Self-Sustaining 3D Identification of Group-Housed Livestock",
+  "authors": "Shiva Paudel, T. Tsai, Chaitanya Pallerla, Yihong Feng, Dongyi Wang",
+  "venue": "Under Review · International Journal of Computer Vision",
+  "year": "2026",
+  "citations": 0,
+  "type": "review",
+  "first": false,
+  "link": ""
+ },
+ {
+  "title": "Autonomous Robotic-Biosensing Platform for Real-Time Microbial Surveillance in Poultry Processing Facilities",
+  "authors": "Yang Tian, Siavash Mahmoudi, Chaitanya Pallerla, Ziyu Liu, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Proc. SPIE 14053, Sensing for Agriculture and Food Quality and Safety XVIII, 140530A",
+  "year": "2026",
+  "citations": 0,
+  "type": "conference",
+  "first": false,
+  "link": "https://doi.org/10.1117/12.3095193"
+ },
+ {
+  "title": "Portable Broadband Dielectric Impedance Immunosensor for Label-Free Escherichia coli O157 Screening in Poultry Samples",
+  "authors": "Yang Tian, Yinuo Huang, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Under Review · Microchemical Journal (SSRN preprint)",
+  "year": "2026",
+  "citations": 0,
+  "type": "review",
+  "first": false,
+  "link": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6366921"
+ },
+ {
+  "title": "Context-Aware Force Estimation for Deformable Tool Manipulation in Robotic Environmental Swabbing via Few-Shot Continual Adaptation",
+  "authors": "Siavash Mahmoudi, Chaitanya Pallerla, Dongyi Wang",
+  "venue": "Under Review · IEEE Robotics and Automation Letters",
+  "year": "2026",
+  "citations": 0,
+  "type": "review",
+  "first": false,
+  "link": ""
+ },
+ {
+  "title": "ChicGrasp: Imitation-Learning-Based Customized Dual-Jaw Gripper Control for Manipulation of Delicate, Irregular Bio-Products",
+  "authors": "Amirreza Davar, Zhiqin Xu, Siavash Mahmoudi, Pouya Sohrabipour, Chaitanya Pallerla, Yu She, Wan Shou, Philip G. Crandall, Dongyi Wang",
+  "venue": "Advanced Robotics Research",
+  "year": "2026",
+  "citations": 4,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.1002/adrr.202500149"
+ },
+ {
+  "title": "Portable Electrochemical Impedance Biosensing with DRT Enabled Machine Learning for Detecting E. coli O157:H7 in Poultry Meat",
+  "authors": "Yang Tian, Ziyu Liu, Chaitanya Pallerla, Siavash Mahmoudi, Ramesh Bahadur Bist, Yiting Xiao, Terry Howell, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Frontiers in Artificial Intelligence, 9:1741144 · IF 4.7",
+  "year": "2026",
+  "citations": 6,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.3389/frai.2026.1741144"
+ },
+ {
+  "title": "Non-Invasive Classification of Chalkiness Levels in Rough and Brown Rice via Hyperspectral Imaging and Machine Learning",
+  "authors": "Charles Tachie, Chaitanya Pallerla*, Kanika Luthra, Dongyi Wang, Griffiths G. Atungulu",
+  "venue": "Journal of the ASABE",
+  "year": "2026",
+  "citations": 0,
+  "type": "journal",
+  "first": false,
+  "link": "https://elibrary.asabe.org/abstract.asp?aid=56126&t=2&redir=&redirType="
+ },
+ {
+  "title": "Neural Network Architecture Search Enabled Wide-Deep Learning (NAS-WD) for Spatially Heterogeneous Property-Aware Chicken Woody Breast Classification and Hardness Regression",
+  "authors": "Chaitanya Pallerla, Yihong Feng, Casey M. Owens, Ramesh Bahadur Bist, Siavash Mahmoudi, Pouya Sohrabipour, Amirreza Davar, Dongyi Wang",
+  "venue": "Artificial Intelligence in Agriculture, 14, 73–85 · IF 16.1",
+  "year": "2024",
+  "citations": 29,
+  "type": "journal",
+  "first": true,
+  "link": "https://doi.org/10.1016/j.aiia.2024.11.003"
+ },
+ {
+  "title": "Thermal Imaging-Guided Detection of Transparent Plastic Contaminants on Chicken Breast: A Combined Vision and Simulation Approach",
+  "authors": "Chaitanya Pallerla, Ramesh Bahadur Bist, Casey M. Owens, Shawna Weimer, Jeyamkondan Subbiah, Dongyi Wang",
+  "venue": "Food Research International, 224, 117993 · IF 8.0",
+  "year": "2025",
+  "citations": 1,
+  "type": "journal",
+  "first": true,
+  "link": "https://doi.org/10.1016/j.foodres.2025.117993"
+ },
+ {
+  "title": "Cost-Effective Active Laser Scanning System for Depth-Aware Deep-Learning-Based Instance Segmentation in Poultry Processing",
+  "authors": "Pouya Sohrabipour, Chaitanya Kumar Reddy Pallerla, Amirreza Davar, Siavash Mahmoudi, Philip Crandall, Wan Shou, Yu She, Dongyi Wang",
+  "venue": "AgriEngineering, 7(3), 77",
+  "year": "2025",
+  "citations": 5,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.3390/agriengineering7030077"
+ },
+ {
+  "title": "Evaluation of Robotic Swabbing and Fluorescent Sensing to Monitor the Hygiene of Food Contact Surfaces",
+  "authors": "Siavash Mahmoudi, Chloe Griscom, Pouya Sohrabipour, Yang Tian, Chaitanya Pallerla, Philip Crandall, Dongyi Wang",
+  "venue": "Foods, 14(19), 3311 · IF 5.1",
+  "year": "2025",
+  "citations": 4,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.3390/foods14193311"
+ },
+ {
+  "title": "Synthetic Data Augmentation for Enhanced Chicken Carcass Instance Segmentation",
+  "authors": "Yihong Feng, Chaitanya Pallerla, Xiaomin Lin, Akhilesh Suresh, Pouya Sohrabipour, Philip Crandall",
+  "venue": "IEEE Transactions on AgriFood Electronics",
+  "year": "2025",
+  "citations": 2,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.1109/TAFE.2025.3644764"
+ },
+ {
+  "title": "Palm-Size Wireless Piezoelectric Immune-Biosensing System for Rapid E. coli O157:H7 Detection",
+  "authors": "Yang Tian, Lily Kelso, Yiting Xiao, Chaitanya Pallerla, Ramesh Bahadur Bist, Siavash Mahmoudi, Ziyu Liu, Han Xiong, Jeyamkondan Subbiah, Terry Howell, Dongyi Wang",
+  "venue": "Sensors International, 6, 100341",
+  "year": "2025",
+  "citations": 1,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.1016/j.sintl.2025.100341"
+ },
+ {
+  "title": "Efficient Auto-Labeling of Large-Scale Poultry Datasets (ALPD) Using Semi-Supervised Models, Active Learning, and Prompt-then-Detect Approach",
+  "authors": "Ramesh Bahadur Bist, Lilong Chai, Shawna Weimer, Hannah Atungulu, Chantel Pennicott, Xiao Yang, Sachin Subedi, Chaitanya Pallerla, Yang Tian, Dongyi Wang",
+  "venue": "Under Review · Smart Agricultural Technology",
+  "year": "2025",
+  "citations": 1,
+  "type": "review",
+  "first": false,
+  "link": ""
+ },
+ {
+  "title": "Automated Detection of Kinky Back in Broiler Chickens Using Optimized Deep Learning Techniques",
+  "authors": "Ramesh Bahadur Bist, Andi Asnayanti, Anh Dang Trieu Do, Yang Tian, Chaitanya Pallerla, Dongyi Wang, Adnan A. K. Alrubaye",
+  "venue": "AgriEngineering, 7(12), 415 · IF 3.0",
+  "year": "2025",
+  "citations": 0,
+  "type": "journal",
+  "first": false,
+  "link": "https://doi.org/10.3390/agriengineering7120415"
+ },
+ {
+  "title": "Non-Invasive Machine Vision Methods for Quality Assessments of Meat and Fish",
+  "authors": "Chaitanya Pallerla, L. Xiang, Dongyi Wang",
+  "venue": "Book chapter · Image Processing: Advances in Applications and Research (ed. D. S. Jayas), Nova Science",
+  "year": "2023",
+  "citations": 0,
+  "type": "chapter",
+  "first": true,
+  "link": "https://doi.org/10.52305/IXDB2323"
+ }
 ];
 
+  // Google Scholar snapshot (update these when citations change)
+  const SCHOLAR = { citations: 53, h: 4, i10: 1, asOf: 'Oct 13, 2026',
+                    perYear: [{y:'2024',c:1},{y:'2025',c:22},{y:'2026',c:29}] };
 
   async function init() {
-    const txt=document.querySelector('.loading-text');
-    const steps=[{msg:'Connecting to Google Scholar…',delay:600},{msg:'Fetching publication list…',delay:900},{msg:'Parsing citation data…',delay:700},{msg:'Extracting author metrics…',delay:600},{msg:'Finalizing results…',delay:500}];
-    for(const s of steps){txt.textContent=s.msg;await new Promise(r=>setTimeout(r,s.delay));}
-    const seen=new Set();
-    const unique=FALLBACK_PAPERS.filter(p=>{const k=p.link.trim().toLowerCase();if(seen.has(k))return false;seen.add(k);return true;});
-    allPapers=unique;
-    document.getElementById('statPapers').textContent=unique.length;
-    document.getElementById('statCitations').textContent='47';
-    document.getElementById('statH').textContent='4';
-    document.getElementById('statI10').textContent='1';
-    document.getElementById('statsBar').style.display='flex';
-    document.getElementById('filterBar').style.display='flex';
-    document.getElementById('loadingState').style.display='none';
-    document.getElementById('pubFooter').style.display='flex';
-    renderCards(allPapers);
+    document.querySelector('.loading-text').textContent = 'Loading publications…';
+    await new Promise(r => setTimeout(r, 450));
+    const seen = new Set();
+    allPapers = FALLBACK_PAPERS.filter(p => { const k = p.title.trim().toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+    const setCount = (id, v) => { const el = document.getElementById(id); el.dataset.count = v; el.textContent = v; };
+    setCount('statPapers', allPapers.filter(TYPE_TEST.published).length);
+    setCount('statReview', allPapers.filter(TYPE_TEST.review).length);
+    setCount('statCitations', SCHOLAR.citations);
+    setCount('statH', SCHOLAR.h);
+    setCount('statI10', SCHOLAR.i10);
+    document.getElementById('scholarAsOf').textContent = SCHOLAR.asOf;
+    renderChart();
+    updateFilterCounts();
+    ['statsBar','filterBar','impactPanel'].forEach(id => document.getElementById(id).style.display = '');
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('pubFooter').style.display = 'flex';
+    applyFilters();
     renderCoAuthors();
+  }
+
+  function renderChart() {
+    const max = Math.max(...SCHOLAR.perYear.map(d => d.c));
+    const wrap = document.getElementById('citeChart');
+    wrap.innerHTML = SCHOLAR.perYear.map(d => `
+      <div class="cbar-col">
+        <div class="cbar-val">${d.c}</div>
+        <div class="cbar-track"><div class="cbar" style="--h:${(d.c / max * 100).toFixed(1)}%"></div></div>
+        <div class="cbar-yr">${d.y}</div>
+      </div>`).join('');
+    setTimeout(() => wrap.classList.add('grow'), 500);
+    // top-cited paper
+    const top = [...FALLBACK_PAPERS].sort((a, b) => b.citations - a.citations)[0];
+    document.getElementById('topPaper').innerHTML = `<span class="tp-label">Most cited</span><a href="${top.link}" target="_blank" rel="noopener">${top.title}</a><span class="tp-cites">${top.citations} citations · ${top.year}</span>`;
+  }
+
+  const TYPE_TEST = {
+    all: () => true,
+    published: p => p.type === 'journal' || p.type === 'conference',
+    journal: p => p.type === 'journal',
+    conference: p => p.type === 'conference',
+    review: p => p.type === 'review',
+    chapter: p => p.type === 'chapter',
+    first: p => p.first
+  };
+  let currentType = 'all';
+  function updateFilterCounts() {
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(b => {
+      const n = allPapers.filter(TYPE_TEST[b.dataset.filter]).length;
+      let c = b.querySelector('.fc'); if (!c) { c = document.createElement('span'); c.className = 'fc'; b.appendChild(c); }
+      c.textContent = n;
+    });
+  }
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active'); currentType = b.dataset.filter; applyFilters();
+  }));
+
+  function citeText(p) {
+    return `${p.authors.replace(/\*/g, '')} (${p.year}). ${p.title}. ${p.venue.split(' · IF')[0]}.${p.link ? ' ' + p.link : ''}`;
+  }
+  function copyCite(btn, i) {
+    const txt = citeText(shownPapers[i]);
+    const done = () => { btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = 'Cite', 1600); };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => prompt('Copy citation:', txt));
+    else prompt('Copy citation:', txt);
   }
 
   const CO_AUTHORS=[
@@ -441,5 +640,6 @@ link: ""
   }
   init();
 </script>
+<script src="fx.js"></script>
 </body>
 </html>
